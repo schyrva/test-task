@@ -46,7 +46,6 @@ const Select: React.FC<SelectProps> = ({
   const [filteredOptions, setFilteredOptions] = useState(options);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Filter options based on search input
   useEffect(() => {
     if (searchValue.trim() === "") {
       setFilteredOptions(options);
@@ -58,7 +57,6 @@ const Select: React.FC<SelectProps> = ({
     }
   }, [searchValue, options]);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -83,14 +81,11 @@ const Select: React.FC<SelectProps> = ({
   };
 
   const handleOptionClick = (option: SelectOption) => {
-    // Check if option is already selected
     const isSelected = value.some((item) => item.value === option.value);
 
     if (isSelected) {
-      // Remove the option
       onChange(value.filter((item) => item.value !== option.value));
     } else if (value.length < maxSelections) {
-      // Add the option if under max selections
       onChange([...value, option]);
     }
   };
@@ -148,7 +143,6 @@ const Select: React.FC<SelectProps> = ({
             </>
           )}
 
-          {/* Search input - only shown when dropdown is open and isSearchable is true */}
           {isOpen && isSearchable && (
             <input
               type="text"
@@ -170,7 +164,6 @@ const Select: React.FC<SelectProps> = ({
           </div>
         </div>
 
-        {/* Error icon */}
         {error && (
           <div className="absolute inset-y-0 right-8 pr-3 flex items-center pointer-events-none">
             <ExclamationCircleIcon
@@ -180,7 +173,6 @@ const Select: React.FC<SelectProps> = ({
           </div>
         )}
 
-        {/* Dropdown menu */}
         {isOpen && (
           <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto">
             {isLoading ? (

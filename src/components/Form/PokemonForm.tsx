@@ -6,7 +6,7 @@ import PokemonModal from "../Modal/PokemonModal";
 import { usePokemon } from "../../hooks/usePokemon";
 import { Pokemon } from "../../types/pokemon";
 
-interface FormData {
+export interface FormData extends Record<string, unknown> {
   firstName: string;
   lastName: string;
 }
@@ -33,7 +33,6 @@ const PokemonForm: React.FC = () => {
     },
   });
 
-  // Watch form fields to update formData state
   const firstName = watch("firstName");
   const lastName = watch("lastName");
 

@@ -22,7 +22,6 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
       <div className="relative bg-white rounded-lg shadow-xl max-w-xl w-full max-h-[90vh] overflow-auto">
-        {/* Modal header */}
         <div className="flex items-center justify-between p-4 border-b">
           <h2 className="text-xl font-semibold">Your Pokemon Team</h2>
           <button
@@ -34,7 +33,6 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
           </button>
         </div>
 
-        {/* Modal content */}
         <div className="p-6">
           <div className="mb-6">
             <h3 className="text-lg font-medium text-gray-900">
@@ -85,7 +83,6 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
           </div>
         </div>
 
-        {/* Modal footer */}
         <div className="flex justify-end p-4 border-t">
           <button
             type="button"

@@ -3,12 +3,12 @@ import {
   UseFormRegister,
   FieldErrors,
   Path,
-  FieldError,
   RegisterOptions,
+  FieldValues,
 } from "react-hook-form";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 
-interface ValidationInputProps<TFormValues extends Record<string, any>> {
+interface ValidationInputProps<TFormValues extends FieldValues> {
   id: Path<TFormValues>;
   label: string;
   placeholder?: string;
@@ -16,9 +16,10 @@ interface ValidationInputProps<TFormValues extends Record<string, any>> {
   register: UseFormRegister<TFormValues>;
   errors: FieldErrors<TFormValues>;
   validationRules?: RegisterOptions<TFormValues, Path<TFormValues>>;
+  hideRequiredText?: boolean;
 }
 
-function ValidationInput<TFormValues extends Record<string, any>>({
+const ValidationInput = <TFormValues extends FieldValues>({
   id,
   label,
   placeholder = "",
@@ -26,7 +27,8 @@ function ValidationInput<TFormValues extends Record<string, any>>({
   register,
   errors,
   validationRules = {},
-}: ValidationInputProps<TFormValues>): React.ReactElement {
+  hideRequiredText = false,
+}: ValidationInputProps<TFormValues>): React.ReactElement => {
   const hasError = !!errors[id];
   const errorMessage = errors[id]?.message as string | undefined;
 
@@ -64,11 +66,13 @@ function ValidationInput<TFormValues extends Record<string, any>>({
           {errorMessage}
         </p>
       )}
-      <p className="mt-1 text-sm text-gray-500">
-        This information is required.
-      </p>
+      {!hideRequiredText && (
+        <p className="mt-1 text-sm text-gray-500">
+          This information is required.
+        </p>
+      )}
     </div>
   );
-}
+};
 
 export default ValidationInput;

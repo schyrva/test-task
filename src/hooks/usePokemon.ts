@@ -1,10 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import axios from "axios";
 import { Pokemon, PokemonListResponse, PokemonOption } from "../types/pokemon";
 
 const POKEMON_API_URL = "https://pokeapi.co/api/v2";
 
-export const usePokemon = (limit = 150) => {
+// Інтерфейс для повернення з хука
+interface UsePokemonResult {
+  isLoading: boolean;
+  error: string | null;
+  pokemonOptions: PokemonOption[];
+  getPokemonById: (id: number) => Pokemon | undefined;
+}
+
+export const usePokemon = (limit = 150): UsePokemonResult => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [pokemonOptions, setPokemonOptions] = useState<PokemonOption[]>([]);
@@ -16,6 +24,8 @@ export const usePokemon = (limit = 150) => {
     const fetchPokemonList = async () => {
       try {
         setIsLoading(true);
+        setError(null);
+
         const response = await axios.get<PokemonListResponse>(
           `${POKEMON_API_URL}/pokemon?limit=${limit}`
         );
@@ -46,7 +56,6 @@ export const usePokemon = (limit = 150) => {
 
         setPokemonOptions(options);
         setPokemonDetails(details);
-        setError(null);
       } catch (err) {
         setError("Failed to fetch Pokemon data. Please try again later.");
         console.error("Error fetching Pokemon:", err);
@@ -58,9 +67,22 @@ export const usePokemon = (limit = 150) => {
     fetchPokemonList();
   }, [limit]);
 
-  const getPokemonById = (id: number): Pokemon | undefined => {
-    return pokemonDetails[id];
-  };
+  // Мемоізуємо функцію getPokemonById
+  const getPokemonById = useCallback(
+    (id: number): Pokemon | undefined => {
+      return pokemonDetails[id];
+    },
+    [pokemonDetails]
+  );
 
-  return { isLoading, error, pokemonOptions, getPokemonById };
+  // Мемоізуємо результат хука для запобігання зайвим ререндерам
+  return useMemo(
+    () => ({
+      isLoading,
+      error,
+      pokemonOptions,
+      getPokemonById,
+    }),
+    [isLoading, error, pokemonOptions, getPokemonById]
+  );
 };
