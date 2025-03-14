@@ -41,3 +41,4 @@ build
 
 # Testing
 /coverage 
+*storybook.log
