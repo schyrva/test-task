@@ -5,6 +5,8 @@ import {
   XMarkIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/24/solid";
+import classNames from "classnames";
+import { Text } from "../ui";
 
 export interface SelectOption {
   value: number;
@@ -99,24 +101,36 @@ const Select: React.FC<SelectProps> = ({
     setSearchValue(e.target.value);
   };
 
+  const containerClasses = classNames(
+    "relative border rounded-md shadow-sm cursor-pointer",
+    {
+      "border-red-500": error,
+      "border-gray-300": !error,
+      "border-indigo-500 ring-2 ring-indigo-200": isOpen,
+    }
+  );
+
+  const optionClasses = (isSelected: boolean, isDisabled: boolean) =>
+    classNames("p-2 flex items-center", {
+      "bg-indigo-50 text-indigo-700": isSelected,
+      "hover:bg-gray-100": !isDisabled,
+      "opacity-50 cursor-not-allowed": isDisabled && !isSelected,
+      "cursor-pointer": !isDisabled || isSelected,
+    });
+
   return (
     <div className="relative mb-4" ref={dropdownRef}>
       <label htmlFor={id} className="flex justify-between">
         <span className="block text-sm font-medium text-gray-700 mb-1">
           {label} {required && <span className="text-red-500">*</span>}
         </span>
-        <span className="text-gray-500 text-sm">Optional</span>
+        <span className="text-gray-500 text-sm">
+          {required ? "Required" : "Optional"}
+        </span>
       </label>
 
-      <div
-        className={`relative border ${
-          error ? "border-red-500" : "border-gray-300"
-        } ${
-          isOpen ? "border-indigo-500 ring-2 ring-indigo-200" : ""
-        } rounded-md shadow-sm cursor-pointer`}
-        onClick={toggleDropdown}
-      >
-        <div className="min-h-[40px] p-2 flex flex-wrap items-center gap-1">
+      <div className={containerClasses} onClick={toggleDropdown}>
+        <div className="min-h-[48px] p-2 flex flex-wrap items-center gap-1">
           {value.length === 0 ? (
             <div className="text-gray-400 pl-2">{placeholder}</div>
           ) : (
@@ -188,18 +202,14 @@ const Select: React.FC<SelectProps> = ({
                 const isSelected = value.some(
                   (item) => item.value === option.value
                 );
+                const isDisabled = value.length >= maxSelections && !isSelected;
+
                 return (
                   <div
                     key={option.value}
-                    className={`p-2 hover:bg-gray-100 flex items-center ${
-                      isSelected ? "bg-indigo-50 text-indigo-700" : ""
-                    } ${
-                      value.length >= maxSelections && !isSelected
-                        ? "opacity-50 cursor-not-allowed"
-                        : "cursor-pointer"
-                    }`}
+                    className={optionClasses(isSelected, isDisabled)}
                     onClick={() => {
-                      if (value.length < maxSelections || isSelected) {
+                      if (!isDisabled || isSelected) {
                         handleOptionClick(option);
                       }
                     }}
@@ -237,15 +247,19 @@ const Select: React.FC<SelectProps> = ({
       </div>
 
       {error ? (
-        <p className="mt-1 text-sm text-red-600">{error}</p>
+        <Text color="error" variant="small" className="mt-1">
+          {error}
+        </Text>
       ) : (
-        <p className="mt-1 text-sm text-gray-500">{helpText}</p>
+        <Text color="muted" variant="small" className="mt-1">
+          {helpText}
+        </Text>
       )}
 
       {maxSelections !== Infinity && (
-        <p className="text-xs text-gray-500 mt-1">
+        <Text variant="tiny" color="muted" className="mt-1">
           Selected {value.length} of {maxSelections}
-        </p>
+        </Text>
       )}
     </div>
   );

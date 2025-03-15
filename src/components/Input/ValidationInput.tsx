@@ -7,6 +7,8 @@ import {
   FieldValues,
 } from "react-hook-form";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
+import classNames from "classnames";
+import { Text } from "../ui";
 
 interface ValidationInputProps<TFormValues extends FieldValues> {
   id: Path<TFormValues>;
@@ -32,6 +34,15 @@ const ValidationInput = <TFormValues extends FieldValues>({
   const hasError = !!errors[id];
   const errorMessage = errors[id]?.message as string | undefined;
 
+  const inputClasses = classNames(
+    "block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+    {
+      "border-red-500": hasError,
+      "border-gray-300": !hasError,
+      "pr-10": hasError,
+    }
+  );
+
   return (
     <div className="mb-4">
       <label
@@ -46,11 +57,7 @@ const ValidationInput = <TFormValues extends FieldValues>({
           type={type}
           placeholder={placeholder}
           {...register(id, validationRules)}
-          className={`block w-full px-4 py-2 border ${
-            hasError ? "border-red-500" : "border-gray-300"
-          } rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
-            hasError ? "pr-10" : ""
-          }`}
+          className={inputClasses}
         />
         {hasError && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -62,14 +69,16 @@ const ValidationInput = <TFormValues extends FieldValues>({
         )}
       </div>
       {hasError && errorMessage && (
-        <p className="mt-1 text-sm text-red-600" id={`${id}-error`}>
-          {errorMessage}
-        </p>
+        <div id={`${id}-error`}>
+          <Text color="error" variant="small" className="mt-1">
+            {errorMessage}
+          </Text>
+        </div>
       )}
       {!hideRequiredText && (
-        <p className="mt-1 text-sm text-gray-500">
+        <Text color="muted" variant="small" className="mt-1">
           This information is required.
-        </p>
+        </Text>
       )}
     </div>
   );

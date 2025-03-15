@@ -1,10 +1,9 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import axios from "axios";
 import { Pokemon, PokemonListResponse, PokemonOption } from "../types/pokemon";
+import { API_URLS, DEFAULT_POKEMON_LIMIT } from "../constants/api";
 
-const POKEMON_API_URL = "https://pokeapi.co/api/v2";
-
-// Інтерфейс для повернення з хука
+// Interface for hook return value
 interface UsePokemonResult {
   isLoading: boolean;
   error: string | null;
@@ -12,7 +11,7 @@ interface UsePokemonResult {
   getPokemonById: (id: number) => Pokemon | undefined;
 }
 
-export const usePokemon = (limit = 150): UsePokemonResult => {
+export const usePokemon = (limit = DEFAULT_POKEMON_LIMIT): UsePokemonResult => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [pokemonOptions, setPokemonOptions] = useState<PokemonOption[]>([]);
@@ -27,14 +26,16 @@ export const usePokemon = (limit = 150): UsePokemonResult => {
         setError(null);
 
         const response = await axios.get<PokemonListResponse>(
-          `${POKEMON_API_URL}/pokemon?limit=${limit}`
+          `${API_URLS.POKEMON}${API_URLS.POKEMON_ENDPOINT}?limit=${limit}`
         );
 
         const pokemonDetailsPromises = response.data.results.map((pokemon) => {
           const pokemonId = parseInt(
             pokemon.url.split("/").filter(Boolean).pop() || "0"
           );
-          return axios.get<Pokemon>(`${POKEMON_API_URL}/pokemon/${pokemonId}`);
+          return axios.get<Pokemon>(
+            `${API_URLS.POKEMON}${API_URLS.POKEMON_ENDPOINT}/${pokemonId}`
+          );
         });
 
         const detailsResponses = await Promise.all(pokemonDetailsPromises);
@@ -67,7 +68,7 @@ export const usePokemon = (limit = 150): UsePokemonResult => {
     fetchPokemonList();
   }, [limit]);
 
-  // Мемоізуємо функцію getPokemonById
+  // Memoize getPokemonById function
   const getPokemonById = useCallback(
     (id: number): Pokemon | undefined => {
       return pokemonDetails[id];
@@ -75,7 +76,7 @@ export const usePokemon = (limit = 150): UsePokemonResult => {
     [pokemonDetails]
   );
 
-  // Мемоізуємо результат хука для запобігання зайвим ререндерам
+  // Memoize hook result to prevent unnecessary rerenders
   return useMemo(
     () => ({
       isLoading,

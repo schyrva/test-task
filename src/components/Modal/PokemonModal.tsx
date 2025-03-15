@@ -1,6 +1,9 @@
 import React from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Pokemon } from "../../types/pokemon";
+import { Badge, Button, Card, Heading, Text } from "../ui";
+import classNames from "classnames";
+import { capitalizeFirstLetter } from "../../utils/string";
 
 interface PokemonModalProps {
   isOpen: boolean;
@@ -21,9 +24,11 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-      <div className="relative bg-white rounded-lg shadow-xl max-w-xl w-full max-h-[90vh] overflow-auto">
+      <Card className="relative max-w-xl w-full max-h-[90vh] overflow-auto">
         <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-xl font-semibold">Your Pokemon Team</h2>
+          <Heading level="h2" className="text-xl">
+            Your Pokemon Team
+          </Heading>
           <button
             type="button"
             onClick={onClose}
@@ -35,26 +40,26 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
 
         <div className="p-6">
           <div className="mb-6">
-            <h3 className="text-lg font-medium text-gray-900">
+            <Heading level="h3" className="text-lg">
               Trainer Information
-            </h3>
-            <p className="mt-2 text-gray-600">
+            </Heading>
+            <Text variant="lead" className="mt-2">
               Name:{" "}
               <span className="font-medium">
                 {userName} {lastName}
               </span>
-            </p>
+            </Text>
           </div>
 
           <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-4">
+            <Heading level="h3" className="text-lg mb-4">
               Your Pokemon
-            </h3>
+            </Heading>
             <div className="grid grid-cols-2 gap-4">
               {pokemonTeam.map((pokemon) => (
-                <div
+                <Card
                   key={pokemon.id}
-                  className="border rounded-lg p-4 flex flex-col items-center"
+                  className="p-4 flex flex-col items-center border"
                 >
                   <img
                     src={
@@ -64,35 +69,33 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
                     alt={pokemon.name}
                     className="w-32 h-32 object-contain"
                   />
-                  <h4 className="text-lg font-medium mt-2 capitalize">
+                  <Heading level="h4" className="mt-2 capitalize">
                     {pokemon.name}
-                  </h4>
+                  </Heading>
                   <div className="flex gap-2 mt-2">
                     {pokemon.types.map((type) => (
-                      <span
+                      <Badge
                         key={type.type.name}
-                        className="px-2 py-1 rounded text-xs font-medium bg-indigo-100 text-indigo-800 capitalize"
+                        variant="primary"
+                        size="sm"
+                        className="capitalize"
                       >
                         {type.type.name}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
-                </div>
+                </Card>
               ))}
             </div>
           </div>
         </div>
 
         <div className="flex justify-end p-4 border-t">
-          <button
-            type="button"
-            onClick={onClose}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
+          <Button variant="primary" onClick={onClose}>
             Close
-          </button>
+          </Button>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

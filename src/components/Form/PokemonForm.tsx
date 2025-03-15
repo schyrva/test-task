@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import ValidationInput from "../Input/ValidationInput";
 import Select, { SelectOption } from "../Select/Select";
 import PokemonModal from "../Modal/PokemonModal";
 import { usePokemon } from "../../hooks/usePokemon";
+import { useFormValidation, FormData } from "../../hooks/useFormValidation";
 import { Pokemon } from "../../types/pokemon";
-
-export interface FormData extends Record<string, unknown> {
-  firstName: string;
-  lastName: string;
-}
+import { Card, Heading, Button } from "../ui";
 
 const PokemonForm: React.FC = () => {
   const [selectedPokemon, setSelectedPokemon] = useState<SelectOption[]>([]);
@@ -18,45 +14,20 @@ const PokemonForm: React.FC = () => {
     firstName: "",
     lastName: "",
   });
-  const { isLoading, error, pokemonOptions, getPokemonById } = usePokemon();
 
+  const { isLoading, error, pokemonOptions, getPokemonById } = usePokemon();
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    watch,
-  } = useForm<FormData>({
-    mode: "onChange",
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-    },
-  });
-
-  const firstName = watch("firstName");
-  const lastName = watch("lastName");
+    nameValidationRules,
+  } = useFormValidation();
 
   const onSubmit = (data: FormData) => {
     if (selectedPokemon.length === 4) {
       setFormData(data);
       setIsModalOpen(true);
     }
-  };
-
-  const nameValidationRules = {
-    required: "This field is required",
-    minLength: {
-      value: 2,
-      message: "Name must be at least 2 characters long",
-    },
-    maxLength: {
-      value: 12,
-      message: "Name cannot exceed 12 characters",
-    },
-    pattern: {
-      value: /^[a-zA-Z]+$/,
-      message: "Only letters (a-z, A-Z) are allowed",
-    },
   };
 
   const getPokemonTeam = (): Pokemon[] => {
@@ -68,10 +39,10 @@ const PokemonForm: React.FC = () => {
   const isFormComplete = isValid && selectedPokemon.length === 4;
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold text-center mb-6">
+    <Card className="max-w-md mx-auto p-6">
+      <Heading level="h1" align="center" className="mb-6">
         Pokemon Team Builder
-      </h1>
+      </Heading>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <ValidationInput<FormData>
@@ -112,17 +83,14 @@ const PokemonForm: React.FC = () => {
         />
 
         <div className="mt-6">
-          <button
+          <Button
             type="submit"
             disabled={!isFormComplete}
-            className={`w-full py-2 px-4 rounded-md text-white ${
-              isFormComplete
-                ? "bg-indigo-600 hover:bg-indigo-700"
-                : "bg-gray-400 cursor-not-allowed"
-            } focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+            fullWidth
+            className={isFormComplete ? "" : "bg-gray-400 cursor-not-allowed"}
           >
             View Your Team
-          </button>
+          </Button>
         </div>
       </form>
 
@@ -135,7 +103,7 @@ const PokemonForm: React.FC = () => {
           lastName={formData.lastName}
         />
       )}
-    </div>
+    </Card>
   );
 };
 
