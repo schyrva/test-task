@@ -39,12 +39,12 @@ const PokemonForm: React.FC = () => {
   const isFormComplete = isValid && selectedPokemon.length === 4;
 
   return (
-    <Card className="max-w-md mx-auto p-6">
+    <Card className="w-full max-w-md mx-auto p-6">
       <Heading level="h1" align="center" className="mb-6">
         Pokemon Team Builder
       </Heading>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
         <ValidationInput<FormData>
           id="firstName"
           label="First Name"

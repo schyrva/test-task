@@ -10,6 +10,8 @@ interface BadgeProps {
   size?: BadgeSize;
   className?: string;
   withIcon?: boolean;
+  removable?: boolean;
+  onRemove?: () => void;
 }
 
 const Badge: React.FC<BadgeProps> = ({
@@ -18,6 +20,8 @@ const Badge: React.FC<BadgeProps> = ({
   size = 'md',
   className = '',
   withIcon = false,
+  removable = false,
+  onRemove,
 }) => {
   const baseStyles = 'inline-flex items-center rounded-full font-medium';
   
@@ -33,13 +37,14 @@ const Badge: React.FC<BadgeProps> = ({
   };
   
   const sizeStyles = {
-    sm: 'px-2 py-0.5 text-xs',
-    md: 'px-2.5 py-1 text-sm',
+    sm: 'text-xs',
+    md: 'text-sm',
   };
 
-  // Apply the 10px horizontal padding as shown in the design spec
+  // Apply the padding as shown in the design spec
   const paddingStyle = {
-    padding: size === 'sm' ? '2px 10px' : '2px 10px',
+    padding: size === 'sm' ? '2px 10px' : '4px 12px',
+    lineHeight: '1.25',
   };
   
   const badgeClasses = classNames(
@@ -49,18 +54,26 @@ const Badge: React.FC<BadgeProps> = ({
     className
   );
 
+  const handleRemove = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onRemove) onRemove();
+  };
+
   return (
     <span className={badgeClasses} style={paddingStyle}>
       {withIcon && (
-        <span className="mr-1">
+        <span className="mr-1.5">
           <svg className="h-2 w-2 fill-current" viewBox="0 0 8 8">
             <circle cx="4" cy="4" r="3" />
           </svg>
         </span>
       )}
       {children}
-      {className.includes('removable') && (
-        <span className="ml-1.5 h-4 w-4 inline-flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-200 hover:text-gray-500">
+      {removable && (
+        <span 
+          className="ml-1.5 h-4 w-4 inline-flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-200 hover:text-gray-500 cursor-pointer"
+          onClick={handleRemove}
+        >
           ×
         </span>
       )}

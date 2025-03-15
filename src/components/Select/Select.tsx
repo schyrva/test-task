@@ -119,7 +119,7 @@ const Select: React.FC<SelectProps> = ({
     });
 
   return (
-    <div className="relative mb-8" ref={dropdownRef}>
+    <div className="relative mb-8 w-full" ref={dropdownRef}>
       <label htmlFor={id} className="flex justify-between mb-2">
         <span className="block text-sm font-medium text-gray-700">
           {label} {required && <span className="text-red-500">*</span>}
@@ -181,74 +181,74 @@ const Select: React.FC<SelectProps> = ({
             )}
           </div>
         </div>
-
-        {error && (
-          <div className="absolute inset-y-0 right-8 pr-3 flex items-center pointer-events-none">
-            <ExclamationCircleIcon
-              className="h-5 w-5 text-red-500"
-              aria-hidden="true"
-            />
-          </div>
-        )}
-
-        {isOpen && (
-          <div className="absolute z-10 mt-1 w-full left-0 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto">
-            {isLoading ? (
-              <div className="p-4 text-center text-gray-500">
-                Loading options...
-              </div>
-            ) : filteredOptions.length === 0 ? (
-              <div className="p-4 text-center text-gray-500">
-                No options found
-              </div>
-            ) : (
-              filteredOptions.map((option) => {
-                const isSelected = value.some(
-                  (item) => item.value === option.value
-                );
-                const isDisabled = value.length >= maxSelections && !isSelected;
-
-                return (
-                  <div
-                    key={option.value}
-                    className={optionClasses(isSelected, isDisabled)}
-                    onClick={() => {
-                      if (!isDisabled || isSelected) {
-                        handleOptionClick(option);
-                      }
-                    }}
-                  >
-                    {option.sprite && (
-                      <img
-                        src={option.sprite}
-                        alt={option.label}
-                        className="w-6 h-6 mr-2"
-                      />
-                    )}
-                    {option.label}
-                    {isSelected && (
-                      <span className="ml-auto">
-                        <svg
-                          className="h-5 w-5 text-indigo-600"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </span>
-                    )}
-                  </div>
-                );
-              })
-            )}
-          </div>
-        )}
       </div>
+
+      {error && (
+        <div className="absolute inset-y-0 right-8 pr-3 flex items-center pointer-events-none">
+          <ExclamationCircleIcon
+            className="h-5 w-5 text-red-500"
+            aria-hidden="true"
+          />
+        </div>
+      )}
+
+      {isOpen && (
+        <div className="absolute z-10 mt-1 w-full left-0 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto max-w-full">
+          {isLoading ? (
+            <div className="p-4 text-center text-gray-500">
+              Loading options...
+            </div>
+          ) : filteredOptions.length === 0 ? (
+            <div className="p-4 text-center text-gray-500">
+              No options found
+            </div>
+          ) : (
+            filteredOptions.map((option) => {
+              const isSelected = value.some(
+                (item) => item.value === option.value
+              );
+              const isDisabled = value.length >= maxSelections && !isSelected;
+
+              return (
+                <div
+                  key={option.value}
+                  className={optionClasses(isSelected, isDisabled)}
+                  onClick={() => {
+                    if (!isDisabled || isSelected) {
+                      handleOptionClick(option);
+                    }
+                  }}
+                >
+                  {option.sprite && (
+                    <img
+                      src={option.sprite}
+                      alt={option.label}
+                      className="w-6 h-6 mr-2"
+                    />
+                  )}
+                  {option.label}
+                  {isSelected && (
+                    <span className="ml-auto">
+                      <svg
+                        className="h-5 w-5 text-indigo-600"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  )}
+                </div>
+              );
+            })
+          )}
+        </div>
+      )}
 
       {error ? (
         <Text color="error" variant="small" className="mt-2">
