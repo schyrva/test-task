@@ -4,6 +4,7 @@ import { Pokemon } from "../../types/pokemon";
 import { Badge, Button, Card, Heading, Text } from "../ui";
 import classNames from "classnames";
 import { capitalizeFirstLetter } from "../../utils/string";
+import { getPokemonTypeColor } from "../../constants/pokemonTypes";
 
 interface PokemonModalProps {
   isOpen: boolean;
@@ -120,7 +121,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
                     {pokemon.types.map((type) => (
                       <Badge
                         key={type.type.name}
-                        variant="primary"
+                        variant={getPokemonTypeColor(type.type.name)}
                         size="sm"
                         className="capitalize"
                       >
