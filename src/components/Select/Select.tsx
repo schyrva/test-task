@@ -102,7 +102,7 @@ const Select: React.FC<SelectProps> = ({
   };
 
   const containerClasses = classNames(
-    "relative border rounded-md shadow-sm cursor-pointer",
+    "relative border rounded-lg shadow-sm cursor-pointer min-h-[40px]",
     {
       "border-red-500": error,
       "border-gray-300": !error,
@@ -119,9 +119,9 @@ const Select: React.FC<SelectProps> = ({
     });
 
   return (
-    <div className="relative mb-4" ref={dropdownRef}>
-      <label htmlFor={id} className="flex justify-between">
-        <span className="block text-sm font-medium text-gray-700 mb-1">
+    <div className="relative mb-8" ref={dropdownRef}>
+      <label htmlFor={id} className="flex justify-between mb-2">
+        <span className="block text-sm font-medium text-gray-700">
           {label} {required && <span className="text-red-500">*</span>}
         </span>
         <span className="text-gray-500 text-sm">
@@ -129,16 +129,20 @@ const Select: React.FC<SelectProps> = ({
         </span>
       </label>
 
-      <div className={containerClasses} onClick={toggleDropdown}>
-        <div className="min-h-[48px] p-2 flex flex-wrap items-center gap-1">
+      <div
+        className={containerClasses}
+        onClick={toggleDropdown}
+        style={{ padding: "8px 12px" }}
+      >
+        <div className="flex flex-wrap items-center gap-1">
           {value.length === 0 ? (
-            <div className="text-gray-400 pl-2">{placeholder}</div>
+            <div className="text-gray-400">{placeholder}</div>
           ) : (
             <>
               {value.map((option) => (
                 <div
                   key={option.value}
-                  className="flex items-center bg-gray-100 rounded px-2 py-1 text-sm"
+                  className="flex items-center bg-gray-100 rounded-md px-2 py-1 text-sm"
                 >
                   {option.sprite && (
                     <img
@@ -188,7 +192,7 @@ const Select: React.FC<SelectProps> = ({
         )}
 
         {isOpen && (
-          <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto">
+          <div className="absolute z-10 mt-1 w-full left-0 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto">
             {isLoading ? (
               <div className="p-4 text-center text-gray-500">
                 Loading options...
@@ -247,11 +251,11 @@ const Select: React.FC<SelectProps> = ({
       </div>
 
       {error ? (
-        <Text color="error" variant="small" className="mt-1">
+        <Text color="error" variant="small" className="mt-2">
           {error}
         </Text>
       ) : (
-        <Text color="muted" variant="small" className="mt-1">
+        <Text color="muted" variant="small" className="mt-2">
           {helpText}
         </Text>
       )}

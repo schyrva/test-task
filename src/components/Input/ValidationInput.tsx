@@ -35,7 +35,7 @@ const ValidationInput = <TFormValues extends FieldValues>({
   const errorMessage = errors[id]?.message as string | undefined;
 
   const inputClasses = classNames(
-    "block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+    "block w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-[40px]",
     {
       "border-red-500": hasError,
       "border-gray-300": !hasError,
@@ -44,12 +44,18 @@ const ValidationInput = <TFormValues extends FieldValues>({
   );
 
   return (
-    <div className="mb-4">
+    <div className="mb-8">
       <label
         htmlFor={id}
-        className="block text-sm font-medium text-gray-700 mb-1"
+        className="flex justify-between text-sm font-medium text-gray-700 mb-2"
       >
-        {label}
+        <span className="flex items-center gap-1">
+          {label}{" "}
+          {validationRules?.required && <span className="text-red-500">*</span>}
+        </span>
+        <span className="text-gray-500 text-sm">
+          {validationRules?.required ? "Required" : "Optional"}
+        </span>
       </label>
       <div className="relative">
         <input
@@ -58,6 +64,7 @@ const ValidationInput = <TFormValues extends FieldValues>({
           placeholder={placeholder}
           {...register(id, validationRules)}
           className={inputClasses}
+          style={{ padding: "12px 16px" }}
         />
         {hasError && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -70,14 +77,16 @@ const ValidationInput = <TFormValues extends FieldValues>({
       </div>
       {hasError && errorMessage && (
         <div id={`${id}-error`}>
-          <Text color="error" variant="small" className="mt-1">
+          <Text color="error" variant="small" className="mt-2">
             {errorMessage}
           </Text>
         </div>
       )}
-      {!hideRequiredText && (
-        <Text color="muted" variant="small" className="mt-1">
-          This information is required.
+      {!hideRequiredText && !hasError && (
+        <Text color="muted" variant="small" className="mt-2">
+          {validationRules?.required
+            ? "This information is required."
+            : "This is a help text."}
         </Text>
       )}
     </div>

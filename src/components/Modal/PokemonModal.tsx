@@ -24,7 +24,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-      <Card className="relative max-w-xl w-full max-h-[90vh] overflow-auto">
+      <Card className="relative max-w-xl w-full max-h-[90vh] overflow-auto rounded-lg shadow-xl">
         <div className="flex items-center justify-between p-4 border-b">
           <Heading level="h2" className="text-xl">
             Your Pokemon Team
@@ -32,7 +32,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-500"
+            className="text-gray-400 hover:text-gray-500 focus:outline-none"
+            aria-label="Close modal"
           >
             <XMarkIcon className="h-6 w-6" />
           </button>
@@ -40,7 +41,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
 
         <div className="p-6">
           <div className="mb-6">
-            <Heading level="h3" className="text-lg">
+            <Heading level="h3" className="text-lg mb-2">
               Trainer Information
             </Heading>
             <Text variant="lead" className="mt-2">
@@ -90,9 +91,12 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
           </div>
         </div>
 
-        <div className="flex justify-end p-4 border-t">
+        <div className="flex justify-end p-4 gap-3 border-t">
+          <Button variant="secondary" onClick={onClose}>
+            Cancel
+          </Button>
           <Button variant="primary" onClick={onClose}>
-            Close
+            Save
           </Button>
         </div>
       </Card>
