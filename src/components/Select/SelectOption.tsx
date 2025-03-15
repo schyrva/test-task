@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import classNames from "classnames";
 
 export interface SelectOptionType {
@@ -28,11 +28,23 @@ const SelectOption: React.FC<SelectOptionProps> = ({
   });
 
   return (
-    <div className={optionClasses} onClick={onClick}>
+    <div
+      className={optionClasses}
+      onClick={onClick}
+      role="option"
+      aria-selected={isSelected}
+      tabIndex={isDisabled ? -1 : 0}
+    >
       {option.sprite && (
-        <img src={option.sprite} alt={option.label} className="w-6 h-6 mr-2" />
+        <img
+          src={option.sprite}
+          alt={option.label}
+          className="w-6 h-6 mr-2"
+          loading="lazy"
+        />
       )}
-      {option.label}
+      <span className="truncate flex-1">{option.label}</span>
+      
       {isSelected && (
         <span className="ml-auto">
           <svg
@@ -40,6 +52,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
+            aria-hidden="true"
           >
             <path
               fillRule="evenodd"
@@ -53,4 +66,4 @@ const SelectOption: React.FC<SelectOptionProps> = ({
   );
 };
 
-export default SelectOption;
+export default memo(SelectOption);

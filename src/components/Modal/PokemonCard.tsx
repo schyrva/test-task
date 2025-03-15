@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Pokemon } from "../../types/pokemon";
 import { Badge, Card, Heading } from "../ui";
 import { getPokemonTypeColor } from "../../constants/pokemonTypes";
@@ -8,16 +8,19 @@ interface PokemonCardProps {
 }
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
+  const spriteUrl =
+    pokemon.sprites.other["official-artwork"].front_default ||
+    pokemon.sprites.front_default;
+
   return (
-    <Card key={pokemon.id} className="p-4 flex flex-col items-center" bordered>
+    <Card className="p-4 flex flex-col items-center" bordered elevation="sm">
       <img
-        src={
-          pokemon.sprites.other["official-artwork"].front_default ||
-          pokemon.sprites.front_default
-        }
-        alt={pokemon.name}
+        src={spriteUrl}
+        alt={`${pokemon.name} sprite`}
         className="w-32 h-32 object-contain"
+        loading="lazy"
       />
+
       <Heading
         level="h4"
         className="mt-2 capitalize"
@@ -26,20 +29,24 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
       >
         {pokemon.name}
       </Heading>
+
       <div className="flex gap-2 mt-2">
-        {pokemon.types.map((type) => (
-          <Badge
-            key={type.type.name}
-            variant={getPokemonTypeColor(type.type.name)}
-            size="sm"
-            className="capitalize"
-          >
-            {type.type.name}
-          </Badge>
-        ))}
+        {pokemon.types.map((type) => {
+          const typeName = type.type.name;
+          return (
+            <Badge
+              key={typeName}
+              variant={getPokemonTypeColor(typeName)}
+              size="sm"
+              className="capitalize"
+            >
+              {typeName}
+            </Badge>
+          );
+        })}
       </div>
     </Card>
   );
 };
 
-export default PokemonCard;
+export default memo(PokemonCard);

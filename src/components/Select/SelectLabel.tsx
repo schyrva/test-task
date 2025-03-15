@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 interface SelectLabelProps {
   id: string;
@@ -15,6 +15,7 @@ const SelectLabel: React.FC<SelectLabelProps> = ({ id, label, required }) => {
       <span className="flex items-center gap-1">
         {label} {required && <span className="text-red-500">*</span>}
       </span>
+      
       <span className="text-gray-500 text-sm">
         {required ? "Required" : "Optional"}
       </span>
@@ -22,4 +23,4 @@ const SelectLabel: React.FC<SelectLabelProps> = ({ id, label, required }) => {
   );
 };
 
-export default SelectLabel;
+export default memo(SelectLabel);

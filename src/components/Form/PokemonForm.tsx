@@ -4,18 +4,23 @@ import Select, { SelectOptionType } from "../Select/Select";
 import PokemonModal from "../Modal/PokemonModal";
 import { usePokemon } from "../../hooks/usePokemon";
 import { useFormValidation, FormData } from "../../hooks/useFormValidation";
-import { Pokemon } from "../../types/pokemon";
+import { usePokemonTeam } from "../../hooks/usePokemonTeam";
 import { Card, Heading, Button } from "../ui";
 
+const REQUIRED_TEAM_SIZE = 4;
+
 const PokemonForm: React.FC = () => {
-  const [selectedPokemon, setSelectedPokemon] = useState<SelectOptionType[]>([]);
+  const [selectedPokemon, setSelectedPokemon] = useState<SelectOptionType[]>(
+    []
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
   });
 
-  const { isLoading, error, pokemonOptions, getPokemonById } = usePokemon();
+  const { isLoading, error: apiError, pokemonOptions } = usePokemon();
+  const { getPokemonTeam } = usePokemonTeam(selectedPokemon);
   const {
     register,
     handleSubmit,
@@ -24,28 +29,37 @@ const PokemonForm: React.FC = () => {
   } = useFormValidation();
 
   const onSubmit = (data: FormData) => {
-    if (selectedPokemon.length === 4) {
+    const isTeamComplete = selectedPokemon.length === REQUIRED_TEAM_SIZE;
+
+    if (isTeamComplete) {
       setFormData(data);
       setIsModalOpen(true);
     }
   };
 
-  const getPokemonTeam = (): Pokemon[] => {
-    return selectedPokemon
-      .map((option) => getPokemonById(option.value))
-      .filter((pokemon): pokemon is Pokemon => pokemon !== undefined);
-  };
+  const isFormComplete =
+    isValid && selectedPokemon.length === REQUIRED_TEAM_SIZE;
+  const teamSizeError =
+    selectedPokemon.length > 0 && selectedPokemon.length < REQUIRED_TEAM_SIZE
+      ? `You must select exactly ${REQUIRED_TEAM_SIZE} Pokemon`
+      : undefined;
 
-  const isFormComplete = isValid && selectedPokemon.length === 4;
+  const selectError = apiError || teamSizeError;
 
   return (
-    <Card className="w-full max-w-md mx-auto p-6">
-      <Heading level="h1" align="center" className="mb-6">
+    <Card className="w-full max-w-md mx-auto p-6" elevation="md">
+      <Heading
+        level="h1"
+        align="center"
+        className="mb-6"
+        variant="primary"
+        weight="bold"
+      >
         Pokemon Team Builder
       </Heading>
 
       <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-        <ValidationInput<FormData>
+        <ValidationInput
           id="firstName"
           label="First Name"
           placeholder="Enter your first name"
@@ -54,7 +68,7 @@ const PokemonForm: React.FC = () => {
           validationRules={nameValidationRules}
         />
 
-        <ValidationInput<FormData>
+        <ValidationInput
           id="lastName"
           label="Last Name"
           placeholder="Enter your last name"
@@ -70,16 +84,11 @@ const PokemonForm: React.FC = () => {
           value={selectedPokemon}
           onChange={setSelectedPokemon}
           placeholder="Select your Pokemon team..."
-          maxSelections={4}
+          maxSelections={REQUIRED_TEAM_SIZE}
           isLoading={isLoading}
-          error={
-            error ||
-            (selectedPokemon.length < 4 && selectedPokemon.length > 0
-              ? "You must select exactly 4 Pokemon"
-              : undefined)
-          }
+          error={selectError}
           required
-          helpText="Select 4 Pokemon to complete your team"
+          helpText={`Select ${REQUIRED_TEAM_SIZE} Pokemon to complete your team`}
         />
 
         <div className="mt-6">
@@ -87,7 +96,7 @@ const PokemonForm: React.FC = () => {
             type="submit"
             disabled={!isFormComplete}
             fullWidth
-            className={isFormComplete ? "" : "bg-gray-400 cursor-not-allowed"}
+            variant={isFormComplete ? "primary" : "outline"}
           >
             View Your Team
           </Button>

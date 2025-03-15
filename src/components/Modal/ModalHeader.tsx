@@ -9,7 +9,7 @@ interface ModalHeaderProps {
 
 const ModalHeader: React.FC<ModalHeaderProps> = ({ title, onClose }) => {
   return (
-    <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white sticky top-0 z-10">
+    <header className="flex items-center justify-between p-4 border-b border-gray-200 bg-white sticky top-0 z-10">
       <Heading
         level="h2"
         className="text-xl"
@@ -18,15 +18,16 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({ title, onClose }) => {
       >
         {title}
       </Heading>
+
       <button
         type="button"
         onClick={onClose}
-        className="text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-full p-1"
+        className="rounded-full h-8 w-8 flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         aria-label="Close modal"
       >
-        <XMarkIcon className="h-6 w-6" />
+        <XMarkIcon className="h-5 w-5" aria-hidden="true" />
       </button>
-    </div>
+    </header>
   );
 };
 

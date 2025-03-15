@@ -8,22 +8,31 @@ interface PokemonTeamProps {
 }
 
 const PokemonTeam: React.FC<PokemonTeamProps> = ({ pokemonTeam }) => {
+  const SECTION_TITLE = "Your Pokemon";
+
   return (
-    <div>
+    <section className="pokemon-team">
       <Heading
         level="h3"
         className="text-lg mb-4"
         variant="secondary"
         weight="medium"
       >
-        Your Pokemon
+        {SECTION_TITLE}
       </Heading>
+
       <div className="grid grid-cols-2 gap-4">
-        {pokemonTeam.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
+        {pokemonTeam.length === 0 ? (
+          <p className="text-gray-500 col-span-2 text-center py-4">
+            No Pokemon selected
+          </p>
+        ) : (
+          pokemonTeam.map((pokemon) => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          ))
+        )}
       </div>
-    </div>
+    </section>
   );
 };
 

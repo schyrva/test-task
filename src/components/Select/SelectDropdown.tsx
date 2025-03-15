@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import SelectOption, { SelectOptionType } from "./SelectOption";
 
 interface SelectDropdownProps {
@@ -9,6 +9,14 @@ interface SelectDropdownProps {
   handleOptionClick: (option: SelectOptionType) => void;
 }
 
+const LoadingState = () => (
+  <div className="p-4 text-center text-gray-500">Loading options...</div>
+);
+
+const EmptyState = () => (
+  <div className="p-4 text-center text-gray-500">No options found</div>
+);
+
 const SelectDropdown: React.FC<SelectDropdownProps> = ({
   options,
   selectedOptions,
@@ -16,26 +24,17 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
   isLoading,
   handleOptionClick,
 }) => {
-  if (isLoading) {
-    return (
-      <div className="p-4 text-center text-gray-500">Loading options...</div>
-    );
-  }
+  if (isLoading) return <LoadingState />;
+  if (options.length === 0) return <EmptyState />;
 
-  if (options.length === 0) {
-    return (
-      <div className="p-4 text-center text-gray-500">No options found</div>
-    );
-  }
+  const selectedIds = new Set(selectedOptions.map((opt) => opt.value));
+  const hasReachedMax = selectedOptions.length >= maxSelections;
 
   return (
     <>
       {options.map((option) => {
-        const isSelected = selectedOptions.some(
-          (item) => item.value === option.value
-        );
-        const isDisabled =
-          selectedOptions.length >= maxSelections && !isSelected;
+        const isSelected = selectedIds.has(option.value);
+        const isDisabled = hasReachedMax && !isSelected;
 
         return (
           <SelectOption
@@ -55,4 +54,4 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
   );
 };
 
-export default SelectDropdown;
+export default memo(SelectDropdown);

@@ -7,23 +7,27 @@ interface TrainerInfoProps {
 }
 
 const TrainerInfo: React.FC<TrainerInfoProps> = ({ firstName, lastName }) => {
+  const SECTION_TITLE = "Trainer Information";
+
+  const formattedFirstName = firstName.trim() || "Unknown";
+  const formattedLastName = lastName.trim() || "";
+  const fullName = `${formattedFirstName} ${formattedLastName}`.trim();
+
   return (
-    <div className="mb-6">
+    <section className="trainer-info mb-6">
       <Heading
         level="h3"
-        className="text-lg mb-2"
+        className="text-lg mb-3"
         variant="secondary"
         weight="medium"
       >
-        Trainer Information
+        {SECTION_TITLE}
       </Heading>
-      <Text variant="lead" className="mt-2" color="default">
-        Name:{" "}
-        <span className="font-medium">
-          {firstName} {lastName}
-        </span>
+
+      <Text variant="body" weight="medium" color="default">
+        {fullName}
       </Text>
-    </div>
+    </section>
   );
 };
 
