@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ValidationInput from "../Input/ValidationInput";
-import Select, { SelectOptionType } from "../Select/Select";
+import Select from "../Select/Select";
+import { SelectOptionType } from "../../types";
 import PokemonModal from "../Modal/PokemonModal";
 import { usePokemon } from "../../hooks/usePokemon";
 import { useFormValidation, FormData } from "../../hooks/useFormValidation";

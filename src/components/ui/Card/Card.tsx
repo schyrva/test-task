@@ -1,13 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-
-interface CardProps {
-  children: React.ReactNode;
-  className?: string;
-  noPadding?: boolean;
-  bordered?: boolean;
-  elevation?: "none" | "sm" | "md" | "lg" | "xl";
-}
+import { CardProps } from "../../../types";
+import { CARD_STYLES } from "../../../constants";
 
 const Card: React.FC<CardProps> = ({
   children,
@@ -16,20 +10,12 @@ const Card: React.FC<CardProps> = ({
   bordered = false,
   elevation = "md",
 }) => {
-  const elevationStyles = {
-    none: "",
-    sm: "shadow-sm",
-    md: "shadow-md",
-    lg: "shadow-lg",
-    xl: "shadow-xl",
-  };
-
   const cardClasses = classNames(
-    "rounded-lg",
-    elevationStyles[elevation],
-    !noPadding && "p-4",
-    bordered && "border border-gray-200",
-    className || "bg-white"
+    CARD_STYLES.BASE,
+    CARD_STYLES.ELEVATIONS[elevation],
+    !noPadding && CARD_STYLES.PADDING,
+    bordered && CARD_STYLES.BORDER,
+    className
   );
 
   return <div className={cardClasses}>{children}</div>;

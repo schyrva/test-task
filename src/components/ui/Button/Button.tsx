@@ -1,19 +1,7 @@
-import React, { ButtonHTMLAttributes, ReactNode } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-
-export type ButtonVariant = 'primary' | 'secondary' | 'text' | 'outline' | 'danger';
-export type ButtonSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl';
-export type ButtonIconPosition = 'left' | 'right';
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  fullWidth?: boolean;
-  isLoading?: boolean;
-  icon?: ReactNode;
-  iconPosition?: ButtonIconPosition;
-  className?: string;
-}
+import { ButtonProps } from '../../../types';
+import { BUTTON_STYLES } from '../../../constants';
 
 const Button: React.FC<ButtonProps> = ({
   children,
@@ -27,30 +15,12 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 font-medium transition-colors';
-  
-  const variantStyles = {
-    primary: 'bg-indigo-600 hover:bg-indigo-700 text-white focus:ring-indigo-500',
-    secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-800 focus:ring-gray-500',
-    danger: 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500',
-    text: 'text-indigo-600 hover:text-indigo-800 bg-transparent hover:bg-indigo-50 focus:ring-indigo-500',
-    outline: 'border border-indigo-500 text-indigo-600 hover:bg-indigo-50 focus:ring-indigo-500 bg-transparent',
-  };
-  
-  const sizeStyles = {
-    xs: 'py-1 px-2 text-xs h-5',
-    sm: 'py-1.5 px-3 text-sm h-6',
-    base: 'py-2 px-4 text-sm h-8',
-    lg: 'py-2.5 px-5 text-base h-10',
-    xl: 'py-3 px-6 text-base h-12',
-  };
-  
   const isDisabled = disabled || isLoading;
   
   const buttonClasses = classNames(
-    baseStyles,
-    variantStyles[variant],
-    sizeStyles[size],
+    BUTTON_STYLES.BASE,
+    BUTTON_STYLES.VARIANTS[variant],
+    BUTTON_STYLES.SIZES[size],
     fullWidth ? 'w-full' : '',
     isDisabled ? 'opacity-50 cursor-not-allowed' : '',
     className
