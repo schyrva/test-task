@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ValidationInput from "../Input/ValidationInput";
-import Select, { SelectOption } from "../Select/Select";
+import Select, { SelectOptionType } from "../Select/Select";
 import PokemonModal from "../Modal/PokemonModal";
 import { usePokemon } from "../../hooks/usePokemon";
 import { useFormValidation, FormData } from "../../hooks/useFormValidation";
@@ -8,7 +8,7 @@ import { Pokemon } from "../../types/pokemon";
 import { Card, Heading, Button } from "../ui";
 
 const PokemonForm: React.FC = () => {
-  const [selectedPokemon, setSelectedPokemon] = useState<SelectOption[]>([]);
+  const [selectedPokemon, setSelectedPokemon] = useState<SelectOptionType[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
