@@ -124,11 +124,7 @@ const Select: React.FC<SelectProps> = ({
       <SelectLabel id={id} label={label} required={required} />
 
       {/* Main select container */}
-      <div
-        className={containerClasses}
-        onClick={toggleDropdown}
-        style={{ padding: "8px 12px" }}
-      >
+      <div className={`${containerClasses} px-3 py-2 mt-2`} onClick={toggleDropdown}>
         <div className="flex flex-wrap items-center gap-1">
           {/* Placeholder or selected items */}
           {value.length === 0 ? (

@@ -57,14 +57,13 @@ const ValidationInput = <TFormValues extends FieldValues>({
           {validationRules?.required ? "Required" : "Optional"}
         </span>
       </label>
-      <div className="relative">
+      <div className="relative mt-2">
         <input
           id={id}
           type={type}
           placeholder={placeholder}
           {...register(id, validationRules)}
-          className={inputClasses}
-          style={{ padding: "12px 16px" }}
+          className={`${inputClasses} px-4 py-3`}
         />
         {hasError && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
