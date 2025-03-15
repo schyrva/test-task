@@ -1,18 +1,6 @@
 import React, { memo } from "react";
 import classNames from "classnames";
-
-export interface SelectOptionType {
-  value: number;
-  label: string;
-  sprite?: string;
-}
-
-interface SelectOptionProps {
-  option: SelectOptionType;
-  isSelected: boolean;
-  isDisabled: boolean;
-  onClick: () => void;
-}
+import { SelectOptionProps } from "../../types";
 
 const SelectOption: React.FC<SelectOptionProps> = ({
   option,
@@ -44,7 +32,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({
         />
       )}
       <span className="truncate flex-1">{option.label}</span>
-      
+
       {isSelected && (
         <span className="ml-auto">
           <svg

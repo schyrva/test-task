@@ -1,10 +1,6 @@
 import React, { memo } from "react";
-
-interface SelectLabelProps {
-  id: string;
-  label: string;
-  required: boolean;
-}
+import { SelectLabelProps } from "../../types";
+import { FORM_LABELS } from "../../constants";
 
 const SelectLabel: React.FC<SelectLabelProps> = ({ id, label, required }) => {
   return (
@@ -15,9 +11,9 @@ const SelectLabel: React.FC<SelectLabelProps> = ({ id, label, required }) => {
       <span className="flex items-center gap-1">
         {label} {required && <span className="text-red-500">*</span>}
       </span>
-      
+
       <span className="text-gray-500 text-sm">
-        {required ? "Required" : "Optional"}
+        {required ? FORM_LABELS.REQUIRED : FORM_LABELS.OPTIONAL}
       </span>
     </label>
   );

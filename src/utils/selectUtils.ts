@@ -1,4 +1,4 @@
-import { SelectOptionType } from "../components/Select/SelectOption";
+import { SelectOptionType } from "../types";
 
 /**
  * Filter options based on search string

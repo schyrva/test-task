@@ -5,29 +5,13 @@ import {
   ExclamationCircleIcon,
 } from "@heroicons/react/24/solid";
 import { Text } from "../ui";
-import { SelectOptionType } from "./SelectOption";
 import SelectedItem from "./SelectedItem";
 import SelectDropdown from "./SelectDropdown";
 import SelectLabel from "./SelectLabel";
 import { useSelect } from "../../hooks/useSelect";
 import { getContainerClasses } from "../../utils/selectUtils";
-
-export type { SelectOptionType };
-
-interface SelectProps {
-  id: string;
-  label: string;
-  options: SelectOptionType[];
-  value: SelectOptionType[];
-  onChange: (value: SelectOptionType[]) => void;
-  placeholder?: string;
-  maxSelections?: number;
-  isSearchable?: boolean;
-  isLoading?: boolean;
-  error?: string;
-  required?: boolean;
-  helpText?: string;
-}
+import { SelectOptionType, SelectProps } from "../../types";
+import { SELECT_DEFAULTS } from "../../constants";
 
 const Select: React.FC<SelectProps> = ({
   id,
@@ -35,13 +19,13 @@ const Select: React.FC<SelectProps> = ({
   options,
   value,
   onChange,
-  placeholder = "Select...",
-  maxSelections = Infinity,
+  placeholder = SELECT_DEFAULTS.PLACEHOLDER,
+  maxSelections = SELECT_DEFAULTS.MAX_SELECTIONS,
   isSearchable = true,
   isLoading = false,
   error,
   required = false,
-  helpText = "This is a help text.",
+  helpText = SELECT_DEFAULTS.HELP_TEXT,
 }) => {
   const {
     isOpen,
@@ -92,7 +76,7 @@ const Select: React.FC<SelectProps> = ({
               value={searchValue}
               onChange={handleSearch}
               onClick={(e) => e.stopPropagation()}
-              placeholder="Type to search..."
+              placeholder={SELECT_DEFAULTS.SEARCH_PLACEHOLDER}
               autoFocus
             />
           )}

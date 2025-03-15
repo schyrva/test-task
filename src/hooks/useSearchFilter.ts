@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
-import { SelectOptionType } from "../components/Select/SelectOption";
+import { SelectOptionType } from "../types";
 import { filterOptions } from "../utils/selectUtils";
 
 /**

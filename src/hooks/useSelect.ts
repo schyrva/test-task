@@ -1,7 +1,7 @@
 import { useDropdown } from "./useDropdown";
 import { useMultiSelect } from "./useMultiSelect";
 import { useSearchFilter } from "./useSearchFilter";
-import { SelectOptionType } from "../components/Select/SelectOption";
+import { SelectOptionType } from "../types";
 
 interface UseSelectProps {
   options: SelectOptionType[];

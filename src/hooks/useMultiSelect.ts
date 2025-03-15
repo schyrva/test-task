@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { SelectOptionType } from "../components/Select/SelectOption";
+import { SelectOptionType } from "../types";
 import { isOptionSelected, toggleSelection } from "../utils/selectUtils";
 
 interface UseMultiSelectProps {
