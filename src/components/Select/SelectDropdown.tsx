@@ -1,5 +1,6 @@
 import React, { memo } from "react";
-import SelectOption, { SelectOptionType } from "./SelectOption";
+import SelectOption from "./SelectOption";
+import { SelectOptionType } from "../../types";
 
 interface SelectDropdownProps {
   options: SelectOptionType[];
@@ -24,8 +25,13 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
   isLoading,
   handleOptionClick,
 }) => {
-  if (isLoading) return <LoadingState />;
-  if (options.length === 0) return <EmptyState />;
+  if (isLoading) {
+    return <LoadingState />;
+  }
+  
+  if (options.length === 0) {
+    return <EmptyState />;
+  }
 
   const selectedIds = new Set(selectedOptions.map((opt) => opt.value));
   const hasReachedMax = selectedOptions.length >= maxSelections;

@@ -1,8 +1,3 @@
-/**
- * UI Component style constants
- */
-
-// Button Styles
 export const BUTTON_STYLES = {
   BASE: "inline-flex items-center justify-center rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 font-medium transition-colors",
 
@@ -26,14 +21,13 @@ export const BUTTON_STYLES = {
   },
 };
 
-// Typography Styles
 export const TEXT_STYLES = {
   VARIANTS: {
-    tiny: "text-xs", // h-5 (20px)
-    small: "text-sm", // h-6 (24px)
-    body: "text-base", // h-8 (32px)
-    lead: "text-lg", // h-10 (40px)
-    large: "text-xl", // h-12 (48px)
+    tiny: "text-xs",
+    small: "text-sm",
+    body: "text-base",
+    lead: "text-lg",
+    large: "text-xl",
   },
 
   COLORS: {
@@ -52,7 +46,6 @@ export const TEXT_STYLES = {
   },
 };
 
-// Heading Styles
 export const HEADING_STYLES = {
   VARIANTS: {
     primary: "text-gray-900",
@@ -66,12 +59,12 @@ export const HEADING_STYLES = {
   },
 
   SIZES: {
-    h1: "text-3xl", // 30px
-    h2: "text-2xl", // 24px
-    h3: "text-xl", // 20px
-    h4: "text-lg", // 18px
-    h5: "text-base", // 16px
-    h6: "text-sm", // 14px
+    h1: "text-3xl",
+    h2: "text-2xl",
+    h3: "text-xl",
+    h4: "text-lg",
+    h5: "text-base",
+    h6: "text-sm",
   },
 
   ALIGN: {
@@ -81,7 +74,6 @@ export const HEADING_STYLES = {
   },
 };
 
-// Badge Styles
 export const BADGE_STYLES = {
   BASE: "inline-flex items-center rounded-full font-medium leading-tight",
 
@@ -102,7 +94,6 @@ export const BADGE_STYLES = {
   },
 };
 
-// Card Styles
 export const CARD_STYLES = {
   BASE: "bg-white rounded-lg overflow-hidden",
 

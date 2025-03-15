@@ -2,9 +2,6 @@ import { useState, useCallback, useMemo } from "react";
 import { SelectOptionType } from "../types";
 import { filterOptions } from "../utils/selectUtils";
 
-/**
- * Hook for filtering options based on search input
- */
 export function useSearchFilter(options: SelectOptionType[]) {
   const [searchValue, setSearchValue] = useState("");
 

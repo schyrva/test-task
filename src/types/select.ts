@@ -1,7 +1,3 @@
-/**
- * Types related to the Select component
- */
-
 export interface SelectOptionType {
   value: number;
   label: string;

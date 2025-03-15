@@ -10,7 +10,7 @@ import SelectDropdown from "./SelectDropdown";
 import SelectLabel from "./SelectLabel";
 import { useSelect } from "../../hooks/useSelect";
 import { getContainerClasses } from "../../utils/selectUtils";
-import { SelectOptionType, SelectProps } from "../../types";
+import { SelectProps } from "../../types";
 import { SELECT_DEFAULTS } from "../../constants";
 
 const Select: React.FC<SelectProps> = ({

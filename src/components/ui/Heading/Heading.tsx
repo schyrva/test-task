@@ -11,14 +11,14 @@ const Heading: React.FC<HeadingProps> = ({
   align = "left",
   className = "",
 }) => {
-  // Convert string level (h1-h6) to number (1-6) if needed
   const normalizedLevel =
     typeof level === "string" ? parseInt(level.replace("h", "")) || 1 : level;
 
   const Tag = `h${normalizedLevel}` as keyof JSX.IntrinsicElements;
+  const sizeKey = `h${normalizedLevel}` as keyof typeof HEADING_STYLES.SIZES;
 
   const headingClasses = classNames(
-    HEADING_STYLES.SIZES[`h${normalizedLevel}`],
+    HEADING_STYLES.SIZES[sizeKey],
     HEADING_STYLES.VARIANTS[variant],
     HEADING_STYLES.WEIGHTS[weight],
     HEADING_STYLES.ALIGN[align],

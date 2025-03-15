@@ -1,8 +1,5 @@
 import { SelectOptionType } from "../types";
 
-/**
- * Filter options based on search string
- */
 export function filterOptions(
   options: SelectOptionType[],
   searchValue: string
@@ -15,9 +12,6 @@ export function filterOptions(
   );
 }
 
-/**
- * Check if an option is already selected
- */
 export function isOptionSelected(
   option: SelectOptionType,
   selectedItems: SelectOptionType[]
@@ -25,9 +19,6 @@ export function isOptionSelected(
   return selectedItems.some((item) => item.value === option.value);
 }
 
-/**
- * Add or remove an item from the selection
- */
 export function toggleSelection(
   option: SelectOptionType,
   selectedItems: SelectOptionType[],
@@ -45,9 +36,6 @@ export function toggleSelection(
   return selectedItems;
 }
 
-/**
- * Generate container class names for the select box
- */
 export function getContainerClasses(isOpen: boolean, error?: string): string {
   return [
     "relative border rounded-lg shadow-sm cursor-pointer min-h-[40px]",

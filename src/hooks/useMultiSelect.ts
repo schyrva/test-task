@@ -8,9 +8,6 @@ interface UseMultiSelectProps {
   maxSelections?: number;
 }
 
-/**
- * Hook for managing multi-select functionality
- */
 export function useMultiSelect({
   value,
   onChange,

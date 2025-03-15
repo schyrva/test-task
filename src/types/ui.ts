@@ -1,8 +1,3 @@
-/**
- * Types related to UI components
- */
-
-// Button Types
 export type ButtonVariant =
   | "primary"
   | "secondary"
@@ -23,7 +18,6 @@ export interface ButtonProps
   className?: string;
 }
 
-// Typography Types
 export type TextColor = "default" | "muted" | "error" | "success" | "primary";
 export type TextWeight = "normal" | "medium" | "semibold" | "bold";
 export type TextVariant = "tiny" | "small" | "body" | "lead" | "large";
@@ -38,7 +32,6 @@ export interface TextProps {
   as?: React.ElementType;
 }
 
-// Heading Types
 export type HeadingLevel =
   | 1
   | 2
@@ -65,7 +58,6 @@ export interface HeadingProps {
   className?: string;
 }
 
-// Badge Types
 export type BadgeVariant =
   | "primary"
   | "secondary"
@@ -88,7 +80,6 @@ export interface BadgeProps {
   onRemove?: () => void;
 }
 
-// Card Types
 export type CardElevation = "none" | "sm" | "md" | "lg" | "xl";
 
 export interface CardProps {
