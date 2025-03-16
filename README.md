@@ -2,6 +2,10 @@
 
 A React application that allows users to create a team of Pokemon by filling out a form with their name and selecting their favorite Pokemon.
 
+## Demo
+
+**Live Demo**: [https://test-task-psi-livid.vercel.app/](https://test-task-psi-livid.vercel.app/)
+
 ## Features
 
 - Form with validation for first name and last name
