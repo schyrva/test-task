@@ -44,14 +44,12 @@ const Select: React.FC<SelectProps> = ({
 
   const [dropdownStyles, setDropdownStyles] = useState({});
 
-  // Оновлюємо позицію дропдауна при відкритті
   useEffect(() => {
     if (isOpen && dropdownRef.current) {
       const rect = dropdownRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const dropdownHeight = Math.min(300, filteredOptions.length * 40 + 10); // Приблизна висота дропдауна
 
-      // Перевіряємо, чи вистачає місця знизу
       const spaceBelow = windowHeight - rect.bottom;
       const shouldFlip = spaceBelow < dropdownHeight && rect.top > dropdownHeight;
 

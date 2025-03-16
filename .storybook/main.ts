@@ -36,7 +36,6 @@ const config: StorybookConfig = {
     },
   },
   async viteFinal(config) {
-    // Add SVGR to Storybook Vite config
     return mergeConfig(config, {
       plugins: [svgr()],
       optimizeDeps: {

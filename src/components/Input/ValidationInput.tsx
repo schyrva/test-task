@@ -16,18 +16,12 @@ interface ValidationInputProps<TFormValues extends FieldValues> {
   hideRequiredText?: boolean;
 }
 
-/**
- * Error icon component displayed when input has an error
- */
 const ErrorIcon = memo(() => (
   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
     <ExclamationCircleIcon className="h-5 w-5 text-red-500" aria-hidden="true" />
   </div>
 ));
 
-/**
- * Helper text displayed below the input
- */
 interface HelperTextProps {
   isRequired: boolean;
   hasError: boolean;
@@ -35,7 +29,6 @@ interface HelperTextProps {
 }
 
 const HelperText = memo<HelperTextProps>(({ isRequired, hasError, errorMessage }) => {
-  // Show error message if present
   if (hasError && errorMessage) {
     return (
       <div>
@@ -46,7 +39,6 @@ const HelperText = memo<HelperTextProps>(({ isRequired, hasError, errorMessage }
     );
   }
 
-  // Show help text if no error
   if (!hasError) {
     const helpMessage = isRequired ? 'This information is required.' : 'This is a help text.';
 

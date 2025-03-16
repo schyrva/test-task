@@ -6,11 +6,6 @@ import Select from '../../components/Select/Select';
 import { Heading, Text } from '../../components/ui';
 import { SelectOptionType } from '../../types';
 
-/**
- * The Select component allows users to choose one or more options from a list.
- *
- * It supports features like multi-selection, search, loading states, and error handling.
- */
 const meta: Meta<typeof Select> = {
   title: 'Components/Form/Select',
   component: Select,
@@ -107,7 +102,6 @@ The Select component is a customizable dropdown that allows users to select one 
 export default meta;
 type Story = StoryObj<typeof Select>;
 
-// Sample data for our stories
 const pokemonOptions: SelectOptionType[] = [
   {
     value: 1,
@@ -151,15 +145,11 @@ const pokemonOptions: SelectOptionType[] = [
   },
 ];
 
-// Wrapper component to handle state for the stories
 const SelectWithState = (args: any) => {
   const [selected, setSelected] = useState<SelectOptionType[]>(args.value || []);
   return <Select {...args} value={selected} onChange={setSelected} />;
 };
 
-/**
- * Default implementation of the Select component with basic configuration.
- */
 export const Default: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
@@ -173,9 +163,6 @@ export const Default: Story = {
   },
 };
 
-/**
- * Select with pre-selected options.
- */
 export const WithPreselectedOptions: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
@@ -186,9 +173,6 @@ export const WithPreselectedOptions: Story = {
   },
 };
 
-/**
- * Select with limited selections (maximum of 2).
- */
 export const LimitedSelections: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
@@ -199,9 +183,6 @@ export const LimitedSelections: Story = {
   },
 };
 
-/**
- * Select with search disabled.
- */
 export const NonSearchable: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
@@ -212,9 +193,6 @@ export const NonSearchable: Story = {
   },
 };
 
-/**
- * Select in a loading state.
- */
 export const Loading: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
@@ -226,9 +204,6 @@ export const Loading: Story = {
   },
 };
 
-/**
- * Select showing an error state.
- */
 export const WithError: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
@@ -238,9 +213,6 @@ export const WithError: Story = {
   },
 };
 
-/**
- * Required Select field with clear indication.
- */
 export const Required: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
@@ -251,9 +223,6 @@ export const Required: Story = {
   },
 };
 
-/**
- * Interactive example demonstrating all aspects of the Select component
- */
 export const AllFeatures: Story = {
   render: () => {
     const [selectedPokemon, setSelectedPokemon] = useState<SelectOptionType[]>([]);

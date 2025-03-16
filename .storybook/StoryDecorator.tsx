@@ -1,9 +1,6 @@
 import { Decorator } from '@storybook/react';
 import React from 'react';
 
-/**
- * A decorator that wraps stories in a consistent layout with Tailwind CSS styling
- */
 export const StoryDecorator: Decorator = (Story, context) => {
   const isDarkMode = context.globals?.backgrounds?.value === '#1e293b';
 

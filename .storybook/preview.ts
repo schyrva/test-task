@@ -21,11 +21,11 @@ const preview: Preview = {
       values: [
         {
           name: 'light',
-          value: '#f8fafc', // Light gray from Tailwind
+          value: '#f8fafc',
         },
         {
           name: 'dark',
-          value: '#1e293b', // Slate-800 from Tailwind
+          value: '#1e293b',
         },
       ],
     },
