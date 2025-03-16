@@ -28,7 +28,7 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
   if (isLoading) {
     return <LoadingState />;
   }
-  
+
   if (options.length === 0) {
     return <EmptyState />;
   }

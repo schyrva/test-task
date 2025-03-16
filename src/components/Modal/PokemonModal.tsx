@@ -5,6 +5,7 @@ import ModalHeader from "./ModalHeader";
 import ModalFooter from "./ModalFooter";
 import TrainerInfo from "./TrainerInfo";
 import PokemonTeam from "./PokemonTeam";
+import { useScrollLock } from "../../hooks/useScrollLock";
 
 const MODAL_TITLE = "Your Pokemon Team";
 
@@ -23,16 +24,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
   userName,
   lastName,
 }) => {
-  useEffect(() => {
-    if (isOpen) {
-      const originalOverflow = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
-
-      return () => {
-        document.body.style.overflow = originalOverflow;
-      };
-    }
-  }, [isOpen]);
+  useScrollLock(isOpen);
 
   if (!isOpen) {
     return null;
@@ -41,13 +33,13 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-30 backdrop-blur-sm">
       <Card
-        className="relative max-w-xl w-full max-h-[90vh] overflow-auto rounded-lg shadow-xl"
+        className="relative max-w-xl w-full max-h-[90vh] overflow-hidden rounded-lg shadow-xl"
         noPadding
         elevation="xl"
       >
         <ModalHeader title={MODAL_TITLE} onClose={onClose} />
 
-        <div className="p-6 bg-white">
+        <div className="p-6 bg-white overflow-y-auto max-h-[calc(90vh-120px)]">
           <TrainerInfo firstName={userName} lastName={lastName} />
           <PokemonTeam pokemonTeam={pokemonTeam} />
         </div>
