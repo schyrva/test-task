@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ChevronDownIcon,
   ChevronUpIcon,
@@ -43,6 +43,35 @@ const Select: React.FC<SelectProps> = ({
     maxSelections,
     isSearchable,
   });
+
+  const [dropdownStyles, setDropdownStyles] = useState({});
+
+  // Оновлюємо позицію дропдауна при відкритті
+  useEffect(() => {
+    if (isOpen && dropdownRef.current) {
+      const rect = dropdownRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const dropdownHeight = Math.min(300, filteredOptions.length * 40 + 10); // Приблизна висота дропдауна
+
+      // Перевіряємо, чи вистачає місця знизу
+      const spaceBelow = windowHeight - rect.bottom;
+      const shouldFlip =
+        spaceBelow < dropdownHeight && rect.top > dropdownHeight;
+
+      setDropdownStyles({
+        position: "absolute",
+        width: `${rect.width}px`,
+        maxHeight: "300px",
+        overflowY: "auto",
+        top: shouldFlip ? "auto" : "100%",
+        bottom: shouldFlip ? "100%" : "auto",
+        left: 0,
+        zIndex: 50,
+        marginTop: shouldFlip ? 0 : "4px",
+        marginBottom: shouldFlip ? "4px" : 0,
+      });
+    }
+  }, [isOpen, filteredOptions.length]);
 
   const containerClasses = getContainerClasses(isOpen, error);
 
@@ -101,7 +130,10 @@ const Select: React.FC<SelectProps> = ({
       )}
 
       {isOpen && (
-        <div className="absolute z-10 mt-1 w-full left-0 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto max-w-full">
+        <div
+          className="bg-white border border-gray-300 rounded-lg shadow-lg"
+          style={dropdownStyles}
+        >
           <SelectDropdown
             options={filteredOptions}
             selectedOptions={value}
