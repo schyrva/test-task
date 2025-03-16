@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import Select from "../../components/Select/Select";
 import { SelectOptionType } from "../../types";
 import { Heading, Text } from "../../components/ui";
@@ -62,7 +63,6 @@ The Select component is a customizable dropdown that allows users to select one 
     },
     onChange: {
       description: "Function called when selection changes",
-      action: "selection changed",
       table: { category: "Required" },
     },
     placeholder: {
@@ -176,6 +176,7 @@ export const Default: Story = {
     label: "Select Pokémon",
     options: pokemonOptions,
     value: [],
+    onChange: fn(),
     placeholder: "Choose your Pokémon...",
     helpText: "Select a Pokémon from the list",
   },

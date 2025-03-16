@@ -1,11 +1,11 @@
 import type { Preview } from "@storybook/react";
+import { fn } from "@storybook/test";
 import "../src/index.css";
 import { StoryDecorator } from "./StoryDecorator";
 
 const preview: Preview = {
   decorators: [StoryDecorator],
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,
