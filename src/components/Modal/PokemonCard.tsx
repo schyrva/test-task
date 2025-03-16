@@ -1,7 +1,8 @@
-import React, { memo } from "react";
-import { Pokemon } from "../../types/pokemon";
-import { Badge, Card, Heading } from "../ui";
-import { getPokemonTypeColor } from "../../constants/pokemonTypes";
+import React, { memo } from 'react';
+
+import { getPokemonTypeColor } from '../../constants/pokemonTypes';
+import { Pokemon } from '../../types/pokemon';
+import { Badge, Card, Heading } from '../ui';
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -9,8 +10,7 @@ interface PokemonCardProps {
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
   const spriteUrl =
-    pokemon.sprites.other["official-artwork"].front_default ||
-    pokemon.sprites.front_default;
+    pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default;
 
   return (
     <Card className="p-4 flex flex-col items-center" bordered elevation="sm">
@@ -21,12 +21,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
         loading="lazy"
       />
 
-      <Heading
-        level="h4"
-        className="mt-2 capitalize"
-        variant="primary"
-        weight="medium"
-      >
+      <Heading level="h4" className="mt-2 capitalize" variant="primary" weight="medium">
         {pokemon.name}
       </Heading>
 

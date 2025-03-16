@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import Select from "../../components/Select/Select";
-import { SelectOptionType } from "../../types";
-import { Heading, Text } from "../../components/ui";
+import { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
+import React, { useState } from 'react';
+
+import Select from '../../components/Select/Select';
+import { Heading, Text } from '../../components/ui';
+import { SelectOptionType } from '../../types';
 
 /**
  * The Select component allows users to choose one or more options from a list.
@@ -11,9 +12,9 @@ import { Heading, Text } from "../../components/ui";
  * It supports features like multi-selection, search, loading states, and error handling.
  */
 const meta: Meta<typeof Select> = {
-  title: "Components/Form/Select",
+  title: 'Components/Form/Select',
   component: Select,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
@@ -38,67 +39,67 @@ The Select component is a customizable dropdown that allows users to select one 
         `,
       },
     },
-    componentSubtitle: "A customizable dropdown select component",
+    componentSubtitle: 'A customizable dropdown select component',
   },
   argTypes: {
     id: {
-      description: "Unique identifier for the select component",
-      control: "text",
-      table: { category: "Required" },
+      description: 'Unique identifier for the select component',
+      control: 'text',
+      table: { category: 'Required' },
     },
     label: {
-      description: "Label text displayed above the select",
-      control: "text",
-      table: { category: "Required" },
+      description: 'Label text displayed above the select',
+      control: 'text',
+      table: { category: 'Required' },
     },
     options: {
-      description: "Array of options to display in the dropdown",
-      control: "object",
-      table: { category: "Required" },
+      description: 'Array of options to display in the dropdown',
+      control: 'object',
+      table: { category: 'Required' },
     },
     value: {
-      description: "Currently selected option(s)",
-      control: "object",
-      table: { category: "Required" },
+      description: 'Currently selected option(s)',
+      control: 'object',
+      table: { category: 'Required' },
     },
     onChange: {
-      description: "Function called when selection changes",
-      table: { category: "Required" },
+      description: 'Function called when selection changes',
+      table: { category: 'Required' },
     },
     placeholder: {
-      description: "Text displayed when no options are selected",
-      control: "text",
-      table: { category: "Appearance" },
+      description: 'Text displayed when no options are selected',
+      control: 'text',
+      table: { category: 'Appearance' },
     },
     maxSelections: {
-      description: "Maximum number of options that can be selected",
-      control: { type: "number", min: 1 },
-      table: { category: "Behavior" },
+      description: 'Maximum number of options that can be selected',
+      control: { type: 'number', min: 1 },
+      table: { category: 'Behavior' },
     },
     isSearchable: {
-      description: "Whether the options can be filtered by typing",
-      control: "boolean",
-      table: { category: "Behavior" },
+      description: 'Whether the options can be filtered by typing',
+      control: 'boolean',
+      table: { category: 'Behavior' },
     },
     isLoading: {
-      description: "Whether to show loading state",
-      control: "boolean",
-      table: { category: "State" },
+      description: 'Whether to show loading state',
+      control: 'boolean',
+      table: { category: 'State' },
     },
     error: {
-      description: "Error message to display",
-      control: "text",
-      table: { category: "State" },
+      description: 'Error message to display',
+      control: 'text',
+      table: { category: 'State' },
     },
     required: {
-      description: "Whether the field is required",
-      control: "boolean",
-      table: { category: "Validation" },
+      description: 'Whether the field is required',
+      control: 'boolean',
+      table: { category: 'Validation' },
     },
     helpText: {
-      description: "Helper text displayed below the select",
-      control: "text",
-      table: { category: "Appearance" },
+      description: 'Helper text displayed below the select',
+      control: 'text',
+      table: { category: 'Appearance' },
     },
   },
 };
@@ -110,59 +111,49 @@ type Story = StoryObj<typeof Select>;
 const pokemonOptions: SelectOptionType[] = [
   {
     value: 1,
-    label: "Bulbasaur",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    label: 'Bulbasaur',
+    sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
   },
   {
     value: 4,
-    label: "Charmander",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+    label: 'Charmander',
+    sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
   },
   {
     value: 7,
-    label: "Squirtle",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+    label: 'Squirtle',
+    sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png',
   },
   {
     value: 25,
-    label: "Pikachu",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    label: 'Pikachu',
+    sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
   },
   {
     value: 39,
-    label: "Jigglypuff",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png",
+    label: 'Jigglypuff',
+    sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png',
   },
   {
     value: 52,
-    label: "Meowth",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png",
+    label: 'Meowth',
+    sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png',
   },
   {
     value: 54,
-    label: "Psyduck",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png",
+    label: 'Psyduck',
+    sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png',
   },
   {
     value: 143,
-    label: "Snorlax",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png",
+    label: 'Snorlax',
+    sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png',
   },
 ];
 
 // Wrapper component to handle state for the stories
 const SelectWithState = (args: any) => {
-  const [selected, setSelected] = useState<SelectOptionType[]>(
-    args.value || []
-  );
+  const [selected, setSelected] = useState<SelectOptionType[]>(args.value || []);
   return <Select {...args} value={selected} onChange={setSelected} />;
 };
 
@@ -172,13 +163,13 @@ const SelectWithState = (args: any) => {
 export const Default: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
-    id: "default-select",
-    label: "Select Pokémon",
+    id: 'default-select',
+    label: 'Select Pokémon',
     options: pokemonOptions,
     value: [],
     onChange: fn(),
-    placeholder: "Choose your Pokémon...",
-    helpText: "Select a Pokémon from the list",
+    placeholder: 'Choose your Pokémon...',
+    helpText: 'Select a Pokémon from the list',
   },
 };
 
@@ -189,9 +180,9 @@ export const WithPreselectedOptions: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
     ...Default.args,
-    id: "preselected-select",
+    id: 'preselected-select',
     value: [pokemonOptions[0], pokemonOptions[3]],
-    helpText: "Some Pokémon are already selected",
+    helpText: 'Some Pokémon are already selected',
   },
 };
 
@@ -202,9 +193,9 @@ export const LimitedSelections: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
     ...Default.args,
-    id: "limited-select",
+    id: 'limited-select',
     maxSelections: 2,
-    helpText: "You can select up to 2 Pokémon",
+    helpText: 'You can select up to 2 Pokémon',
   },
 };
 
@@ -215,9 +206,9 @@ export const NonSearchable: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
     ...Default.args,
-    id: "non-searchable-select",
+    id: 'non-searchable-select',
     isSearchable: false,
-    helpText: "This select does not support searching",
+    helpText: 'This select does not support searching',
   },
 };
 
@@ -228,10 +219,10 @@ export const Loading: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
     ...Default.args,
-    id: "loading-select",
+    id: 'loading-select',
     isLoading: true,
     options: [],
-    helpText: "Loading Pokémon...",
+    helpText: 'Loading Pokémon...',
   },
 };
 
@@ -242,8 +233,8 @@ export const WithError: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
     ...Default.args,
-    id: "error-select",
-    error: "Please select a valid Pokémon",
+    id: 'error-select',
+    error: 'Please select a valid Pokémon',
   },
 };
 
@@ -254,9 +245,9 @@ export const Required: Story = {
   render: (args) => <SelectWithState {...args} />,
   args: {
     ...Default.args,
-    id: "required-select",
+    id: 'required-select',
     required: true,
-    helpText: "This field is required",
+    helpText: 'This field is required',
   },
 };
 
@@ -265,17 +256,13 @@ export const Required: Story = {
  */
 export const AllFeatures: Story = {
   render: () => {
-    const [selectedPokemon, setSelectedPokemon] = useState<SelectOptionType[]>(
-      []
-    );
+    const [selectedPokemon, setSelectedPokemon] = useState<SelectOptionType[]>([]);
     const [error, setError] = useState<string | undefined>(undefined);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (newValue: SelectOptionType[]) => {
       setSelectedPokemon(newValue);
-      setError(
-        newValue.length === 0 ? "Please select at least one Pokémon" : undefined
-      );
+      setError(newValue.length === 0 ? 'Please select at least one Pokémon' : undefined);
     };
 
     const handleToggleLoading = () => {
@@ -289,8 +276,7 @@ export const AllFeatures: Story = {
             Interactive Select Demo
           </Heading>
           <Text variant="body" className="mb-6">
-            This example demonstrates various features of the Select component
-            working together.
+            This example demonstrates various features of the Select component working together.
           </Text>
         </div>
 
@@ -299,16 +285,14 @@ export const AllFeatures: Story = {
             onClick={handleToggleLoading}
             className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
           >
-            {isLoading ? "Stop Loading" : "Simulate Loading"}
+            {isLoading ? 'Stop Loading' : 'Simulate Loading'}
           </button>
 
           <button
-            onClick={() =>
-              setError(error ? undefined : "This is a sample error")
-            }
+            onClick={() => setError(error ? undefined : 'This is a sample error')}
             className="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-50"
           >
-            {error ? "Clear Error" : "Show Error"}
+            {error ? 'Clear Error' : 'Show Error'}
           </button>
         </div>
 

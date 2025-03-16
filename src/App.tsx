@@ -1,6 +1,7 @@
-import React from "react";
-import PokemonForm from "./components/Form/PokemonForm";
-import { Header } from "./components/ui";
+import React from 'react';
+
+import PokemonForm from './components/Form/PokemonForm';
+import { Header } from './components/ui';
 
 function App() {
   return (

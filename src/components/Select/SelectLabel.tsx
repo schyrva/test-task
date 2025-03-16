@@ -1,13 +1,11 @@
-import React, { memo } from "react";
-import { SelectLabelProps } from "../../types";
-import { FORM_LABELS } from "../../constants";
+import React, { memo } from 'react';
+
+import { FORM_LABELS } from '../../constants';
+import { SelectLabelProps } from '../../types';
 
 const SelectLabel: React.FC<SelectLabelProps> = ({ id, label, required }) => {
   return (
-    <label
-      htmlFor={id}
-      className="flex justify-between text-sm font-medium text-gray-700 mb-2"
-    >
+    <label htmlFor={id} className="flex justify-between text-sm font-medium text-gray-700 mb-2">
       <span className="flex items-center gap-1">
         {label} {required && <span className="text-red-500">*</span>}
       </span>

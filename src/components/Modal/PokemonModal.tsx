@@ -1,13 +1,15 @@
-import React, { memo, useEffect } from "react";
-import { Pokemon } from "../../types/pokemon";
-import { Card } from "../ui";
-import ModalHeader from "./ModalHeader";
-import ModalFooter from "./ModalFooter";
-import TrainerInfo from "./TrainerInfo";
-import PokemonTeam from "./PokemonTeam";
-import { useScrollLock } from "../../hooks/useScrollLock";
+import React, { memo } from 'react';
 
-const MODAL_TITLE = "Your Pokemon Team";
+import { useScrollLock } from '../../hooks/useScrollLock';
+import { Pokemon } from '../../types/pokemon';
+import { Card } from '../ui';
+
+import ModalFooter from './ModalFooter';
+import ModalHeader from './ModalHeader';
+import PokemonTeam from './PokemonTeam';
+import TrainerInfo from './TrainerInfo';
+
+const MODAL_TITLE = 'Your Pokemon Team';
 
 interface PokemonModalProps {
   isOpen: boolean;

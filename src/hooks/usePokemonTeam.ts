@@ -1,7 +1,9 @@
-import { useCallback } from "react";
-import { Pokemon } from "../types/pokemon";
-import { usePokemon } from "./usePokemon";
-import { SelectOptionType } from "../types";
+import { useCallback } from 'react';
+
+import { SelectOptionType } from '../types';
+import { Pokemon } from '../types/pokemon';
+
+import { usePokemon } from './usePokemon';
 
 export const usePokemonTeam = (selectedPokemon: SelectOptionType[]) => {
   const { getPokemonById } = usePokemon();

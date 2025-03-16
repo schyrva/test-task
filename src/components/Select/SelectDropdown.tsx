@@ -1,6 +1,8 @@
-import React, { memo } from "react";
-import SelectOption from "./SelectOption";
-import { SelectOptionType } from "../../types";
+import React, { memo } from 'react';
+
+import { SelectOptionType } from '../../types';
+
+import SelectOption from './SelectOption';
 
 interface SelectDropdownProps {
   options: SelectOptionType[];
@@ -10,13 +12,9 @@ interface SelectDropdownProps {
   handleOptionClick: (option: SelectOptionType) => void;
 }
 
-const LoadingState = () => (
-  <div className="p-4 text-center text-gray-500">Loading options...</div>
-);
+const LoadingState = () => <div className="p-4 text-center text-gray-500">Loading options...</div>;
 
-const EmptyState = () => (
-  <div className="p-4 text-center text-gray-500">No options found</div>
-);
+const EmptyState = () => <div className="p-4 text-center text-gray-500">No options found</div>;
 
 const SelectDropdown: React.FC<SelectDropdownProps> = ({
   options,

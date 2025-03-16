@@ -1,13 +1,14 @@
-import React from "react";
-import classNames from "classnames";
-import { BadgeProps } from "../../../types";
-import { BADGE_STYLES } from "../../../constants";
+import classNames from 'classnames';
+import React from 'react';
+
+import { BADGE_STYLES } from '../../../constants';
+import { BadgeProps } from '../../../types';
 
 const Badge: React.FC<BadgeProps> = ({
   children,
-  variant = "primary",
-  size = "md",
-  className = "",
+  variant = 'primary',
+  size = 'md',
+  className = '',
   withIcon = false,
   removable = false,
   onRemove,
@@ -34,7 +35,7 @@ const Badge: React.FC<BadgeProps> = ({
         </span>
       )}
       {children}
-      
+
       {removable && (
         <span
           className="ml-1.5 h-4 w-4 inline-flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-200 hover:text-gray-500 cursor-pointer"

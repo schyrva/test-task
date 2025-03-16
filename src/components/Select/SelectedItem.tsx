@@ -1,6 +1,7 @@
-import React, { memo } from "react";
-import { XMarkIcon } from "@heroicons/react/24/solid";
-import { SelectedItemProps } from "../../types";
+import { XMarkIcon } from '@heroicons/react/24/solid';
+import React, { memo } from 'react';
+
+import { SelectedItemProps } from '../../types';
 
 const SelectedItem: React.FC<SelectedItemProps> = ({ option, onRemove }) => {
   const handleRemove = (e: React.MouseEvent) => {
@@ -11,12 +12,7 @@ const SelectedItem: React.FC<SelectedItemProps> = ({ option, onRemove }) => {
   return (
     <div className="flex items-center bg-gray-100 rounded-md px-2 py-1 text-sm">
       {option.sprite && (
-        <img
-          src={option.sprite}
-          alt={option.label}
-          className="w-5 h-5 mr-1"
-          loading="lazy"
-        />
+        <img src={option.sprite} alt={option.label} className="w-5 h-5 mr-1" loading="lazy" />
       )}
       <span className="truncate max-w-[100px]">{option.label}</span>
 

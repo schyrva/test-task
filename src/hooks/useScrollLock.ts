@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 /**
  * Хук для блокування/розблокування прокрутки сторінки
@@ -13,7 +13,7 @@ export const useScrollLock = (isLocked: boolean): void => {
     const originalOverflow = originalStyle.overflow;
 
     // Блокуємо прокрутку
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
 
     // Функція очищення для відновлення оригінальних стилів
     return () => {

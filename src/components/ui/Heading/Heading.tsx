@@ -1,18 +1,18 @@
-import React from "react";
-import classNames from "classnames";
-import { HeadingProps } from "../../../types";
-import { HEADING_STYLES } from "../../../constants";
+import classNames from 'classnames';
+import React from 'react';
+
+import { HEADING_STYLES } from '../../../constants';
+import { HeadingProps } from '../../../types';
 
 const Heading: React.FC<HeadingProps> = ({
   level = 1,
   children,
-  variant = "primary",
-  weight = "bold",
-  align = "left",
-  className = "",
+  variant = 'primary',
+  weight = 'bold',
+  align = 'left',
+  className = '',
 }) => {
-  const normalizedLevel =
-    typeof level === "string" ? parseInt(level.replace("h", "")) || 1 : level;
+  const normalizedLevel = typeof level === 'string' ? parseInt(level.replace('h', '')) || 1 : level;
 
   const Tag = `h${normalizedLevel}` as keyof JSX.IntrinsicElements;
   const sizeKey = `h${normalizedLevel}` as keyof typeof HEADING_STYLES.SIZES;

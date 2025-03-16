@@ -1,37 +1,36 @@
-import type { StorybookConfig } from "@storybook/react-vite";
-import { mergeConfig } from "vite";
-import svgr from "vite-plugin-svgr";
+import type { StorybookConfig } from '@storybook/react-vite';
+import { mergeConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-onboarding",
-    "@storybook/addon-a11y",
-    "@chromatic-com/storybook",
-    "@storybook/experimental-addon-test",
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-onboarding',
+    '@storybook/addon-a11y',
+    '@chromatic-com/storybook',
+    '@storybook/experimental-addon-test',
   ],
   framework: {
-    name: "@storybook/react-vite",
+    name: '@storybook/react-vite',
     options: {},
   },
   core: {
     disableTelemetry: true,
   },
   docs: {
-    autodocs: "tag",
-    defaultName: "Documentation",
+    autodocs: 'tag',
+    defaultName: 'Documentation',
   },
   typescript: {
-    reactDocgen: "react-docgen-typescript",
+    reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       compilerOptions: {
         allowSyntheticDefaultImports: false,
         esModuleInterop: false,
       },
-      propFilter: (prop) =>
-        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
       shouldExtractLiteralValuesFromEnum: true,
       shouldRemoveUndefinedFromOptional: true,
     },
@@ -41,7 +40,7 @@ const config: StorybookConfig = {
     return mergeConfig(config, {
       plugins: [svgr()],
       optimizeDeps: {
-        include: ["react", "react-dom"],
+        include: ['react', 'react-dom'],
       },
       build: {
         sourcemap: true,

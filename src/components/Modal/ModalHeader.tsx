@@ -1,6 +1,7 @@
-import React from "react";
-import { XMarkIcon } from "@heroicons/react/24/solid";
-import { Heading } from "../ui";
+import { XMarkIcon } from '@heroicons/react/24/solid';
+import React from 'react';
+
+import { Heading } from '../ui';
 
 interface ModalHeaderProps {
   title: string;
@@ -10,12 +11,7 @@ interface ModalHeaderProps {
 const ModalHeader: React.FC<ModalHeaderProps> = ({ title, onClose }) => {
   return (
     <header className="flex items-center justify-between p-4 border-b border-gray-200 bg-white sticky top-0 z-10">
-      <Heading
-        level="h2"
-        className="text-xl"
-        variant="primary"
-        weight="semibold"
-      >
+      <Heading level="h2" className="text-xl" variant="primary" weight="semibold">
         {title}
       </Heading>
 

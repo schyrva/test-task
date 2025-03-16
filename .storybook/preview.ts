@@ -1,7 +1,8 @@
-import type { Preview } from "@storybook/react";
-import { fn } from "@storybook/test";
-import "../src/index.css";
-import { StoryDecorator } from "./StoryDecorator";
+import type { Preview } from '@storybook/react';
+import { fn } from '@storybook/test';
+
+import '../src/index.css';
+import { StoryDecorator } from './StoryDecorator';
 
 const preview: Preview = {
   decorators: [StoryDecorator],
@@ -12,50 +13,50 @@ const preview: Preview = {
         date: /Date$/i,
       },
       expanded: true,
-      sort: "requiredFirst",
+      sort: 'requiredFirst',
     },
-    layout: "padded",
+    layout: 'padded',
     backgrounds: {
-      default: "light",
+      default: 'light',
       values: [
         {
-          name: "light",
-          value: "#f8fafc", // Light gray from Tailwind
+          name: 'light',
+          value: '#f8fafc', // Light gray from Tailwind
         },
         {
-          name: "dark",
-          value: "#1e293b", // Slate-800 from Tailwind
+          name: 'dark',
+          value: '#1e293b', // Slate-800 from Tailwind
         },
       ],
     },
     viewport: {
       viewports: {
         mobile: {
-          name: "Mobile",
+          name: 'Mobile',
           styles: {
-            width: "375px",
-            height: "667px",
+            width: '375px',
+            height: '667px',
           },
         },
         tablet: {
-          name: "Tablet",
+          name: 'Tablet',
           styles: {
-            width: "768px",
-            height: "1024px",
+            width: '768px',
+            height: '1024px',
           },
         },
         desktop: {
-          name: "Desktop",
+          name: 'Desktop',
           styles: {
-            width: "1280px",
-            height: "800px",
+            width: '1280px',
+            height: '800px',
           },
         },
       },
     },
     docs: {
       canvas: {
-        sourceState: "shown",
+        sourceState: 'shown',
       },
       toc: true,
       description: {

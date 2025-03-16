@@ -1,6 +1,7 @@
-import { useCallback } from "react";
-import { SelectOptionType } from "../types";
-import { isOptionSelected, toggleSelection } from "../utils/selectUtils";
+import { useCallback } from 'react';
+
+import { SelectOptionType } from '../types';
+import { isOptionSelected, toggleSelection } from '../utils/selectUtils';
 
 interface UseMultiSelectProps {
   value: SelectOptionType[];
@@ -8,11 +9,7 @@ interface UseMultiSelectProps {
   maxSelections?: number;
 }
 
-export function useMultiSelect({
-  value,
-  onChange,
-  maxSelections = Infinity,
-}: UseMultiSelectProps) {
+export function useMultiSelect({ value, onChange, maxSelections = Infinity }: UseMultiSelectProps) {
   const handleOptionClick = useCallback(
     (option: SelectOptionType) => {
       const newSelection = toggleSelection(option, value, maxSelections);
@@ -36,7 +33,6 @@ export function useMultiSelect({
     handleOptionClick,
     removeSelected,
     hasReachedMax,
-    isOptionSelected: (option: SelectOptionType) =>
-      isOptionSelected(option, value),
+    isOptionSelected: (option: SelectOptionType) => isOptionSelected(option, value),
   };
 }
