@@ -5,8 +5,10 @@ import svgr from "vite-plugin-svgr";
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
+    "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
+    "@storybook/addon-a11y",
     "@chromatic-com/storybook",
     "@storybook/experimental-addon-test",
   ],
@@ -17,10 +19,34 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
+  docs: {
+    autodocs: "tag",
+    defaultName: "Documentation",
+  },
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      compilerOptions: {
+        allowSyntheticDefaultImports: false,
+        esModuleInterop: false,
+      },
+      propFilter: (prop) =>
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+    },
+  },
   async viteFinal(config) {
     // Add SVGR to Storybook Vite config
     return mergeConfig(config, {
       plugins: [svgr()],
+      optimizeDeps: {
+        include: ["react", "react-dom"],
+      },
+      build: {
+        sourcemap: true,
+        chunkSizeWarningLimit: 1200,
+      },
     });
   },
 };

@@ -1,0 +1,106 @@
+import { Meta } from "@storybook/blocks";
+import { Heading } from "../components/ui";
+
+<Meta title="Introduction" />
+
+<div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    margin: "60px 0 40px",
+  }}
+>
+  <img
+    src="/src/assets/logos/LunaEdgeLogo.svg"
+    alt="Luna Edge Logo"
+    style={{
+      height: 80,
+      marginBottom: 20,
+      filter: "brightness(0)",
+    }}
+  />
+  <Heading level="h1" variant="primary" weight="bold">
+    Luna Edge Component Library
+  </Heading>
+</div>
+
+<div style={{ margin: '0 auto', maxWidth: '800px' }}>
+
+## Welcome to the Luna Edge Component Library
+
+This Storybook provides comprehensive documentation of components used in Luna Edge applications.
+Our component library is built with React, TypeScript, and Tailwind CSS, providing a flexible and powerful set of tools for building modern user interfaces.
+
+### Getting Started
+
+Use the navigation on the left to explore our components. Each component includes:
+
+- Interactive examples
+- Detailed API documentation
+- Usage guidelines
+- Source code
+
+### Component Organization
+
+Our components are organized into the following categories:
+
+- **Form**: Input components like Select, Input fields, Checkboxes, Radio buttons
+- **UI**: Generic UI elements like Buttons, Cards, Badges
+- **Layout**: Components for layout and structure
+- **Typography**: Text and heading components
+- **Feedback**: Loaders, alerts, and notifications
+
+### Design System
+
+Explore our design system to understand the underlying principles:
+
+- [Theme & Colors](/docs/design-system-theme--docs)
+- [Typography](/docs/design-system-typography--docs)
+- [Spacing & Layout](/docs/design-system-spacing--docs)
+
+### Using Components in Your Project
+
+To use these components in your project:
+
+```jsx
+import { Select, Button, Card } from "luna-edge-ui";
+
+function MyComponent() {
+  return (
+    <Card>
+      <Select
+        label="Select an option"
+        options={[
+          { value: 1, label: "Option 1" },
+          { value: 2, label: "Option 2" },
+        ]}
+        onChange={(selected) => console.log(selected)}
+      />
+      <Button variant="primary">Submit</Button>
+    </Card>
+  );
+}
+```
+
+### Accessibility
+
+All components are designed with accessibility in mind, following WCAG 2.1 guidelines.
+Each component includes proper ARIA attributes, keyboard navigation, and focus management.
+
+### Contribution
+
+To contribute to this component library:
+
+1. Clone the repository
+2. Install dependencies with `yarn install`
+3. Run Storybook locally with `yarn storybook`
+4. Make your changes
+5. Submit a pull request
+
+### Feedback and Support
+
+If you have any questions or feedback, please reach out to the Luna Edge team.
+
+</div>
