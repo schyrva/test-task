@@ -1,5 +1,6 @@
-import { useForm, UseFormReturn } from "react-hook-form";
-import { NAME_VALIDATION_RULES } from "../constants/validation";
+import { useForm, UseFormReturn } from 'react-hook-form';
+
+import { NAME_VALIDATION_RULES } from '../constants/validation';
 
 export type FormData = {
   firstName: string;
@@ -18,13 +19,13 @@ export const useFormValidation = (
 } => {
   const {
     defaultValues = {
-      firstName: "",
-      lastName: "",
+      firstName: '',
+      lastName: '',
     },
   } = options;
 
   const form = useForm<FormData>({
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues,
   });
 

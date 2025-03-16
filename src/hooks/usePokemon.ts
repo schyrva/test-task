@@ -1,8 +1,9 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
-import axios from "axios";
-import { Pokemon, PokemonListResponse, PokemonOption } from "../types/pokemon";
-import { API_URLS, DEFAULT_POKEMON_LIMIT } from "../constants/api";
-import { capitalizeFirstLetter } from "../utils/string";
+import axios from 'axios';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+
+import { API_URLS, DEFAULT_POKEMON_LIMIT } from '../constants/api';
+import { Pokemon, PokemonListResponse, PokemonOption } from '../types/pokemon';
+import { capitalizeFirstLetter } from '../utils/string';
 
 interface UsePokemonResult {
   isLoading: boolean;
@@ -12,7 +13,7 @@ interface UsePokemonResult {
 }
 
 const extractPokemonId = (url: string): number => {
-  const idString = url.split("/").filter(Boolean).pop() || "0";
+  const idString = url.split('/').filter(Boolean).pop() || '0';
   return parseInt(idString);
 };
 
@@ -26,9 +27,7 @@ export const usePokemon = (limit = DEFAULT_POKEMON_LIMIT): UsePokemonResult => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [pokemonOptions, setPokemonOptions] = useState<PokemonOption[]>([]);
-  const [pokemonDetails, setPokemonDetails] = useState<Record<number, Pokemon>>(
-    {}
-  );
+  const [pokemonDetails, setPokemonDetails] = useState<Record<number, Pokemon>>({});
 
   useEffect(() => {
     const fetchPokemonList = async () => {
@@ -62,8 +61,8 @@ export const usePokemon = (limit = DEFAULT_POKEMON_LIMIT): UsePokemonResult => {
         setPokemonOptions(options);
         setPokemonDetails(details);
       } catch (err) {
-        setError("Failed to fetch Pokemon data. Please try again later.");
-        console.error("Error fetching Pokemon:", err);
+        setError('Failed to fetch Pokemon data. Please try again later.');
+        console.error('Error fetching Pokemon:', err);
       } finally {
         setIsLoading(false);
       }

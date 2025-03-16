@@ -1,18 +1,14 @@
-import React, { memo } from "react";
-import classNames from "classnames";
-import { SelectOptionProps } from "../../types";
+import classNames from 'classnames';
+import React, { memo } from 'react';
 
-const SelectOption: React.FC<SelectOptionProps> = ({
-  option,
-  isSelected,
-  isDisabled,
-  onClick,
-}) => {
-  const optionClasses = classNames("p-2 flex items-center", {
-    "bg-indigo-50 text-indigo-700": isSelected,
-    "hover:bg-gray-100": !isDisabled,
-    "opacity-50 cursor-not-allowed": isDisabled && !isSelected,
-    "cursor-pointer": !isDisabled || isSelected,
+import { SelectOptionProps } from '../../types';
+
+const SelectOption: React.FC<SelectOptionProps> = ({ option, isSelected, isDisabled, onClick }) => {
+  const optionClasses = classNames('p-2 flex items-center', {
+    'bg-indigo-50 text-indigo-700': isSelected,
+    'hover:bg-gray-100': !isDisabled,
+    'opacity-50 cursor-not-allowed': isDisabled && !isSelected,
+    'cursor-pointer': !isDisabled || isSelected,
   });
 
   return (
@@ -24,12 +20,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({
       tabIndex={isDisabled ? -1 : 0}
     >
       {option.sprite && (
-        <img
-          src={option.sprite}
-          alt={option.label}
-          className="w-6 h-6 mr-2"
-          loading="lazy"
-        />
+        <img src={option.sprite} alt={option.label} className="w-6 h-6 mr-2" loading="lazy" />
       )}
       <span className="truncate flex-1">{option.label}</span>
 

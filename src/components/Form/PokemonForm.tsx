@@ -1,23 +1,22 @@
-import React, { useState } from "react";
-import ValidationInput from "../Input/ValidationInput";
-import Select from "../Select/Select";
-import { SelectOptionType } from "../../types";
-import PokemonModal from "../Modal/PokemonModal";
-import { usePokemon } from "../../hooks/usePokemon";
-import { useFormValidation, FormData } from "../../hooks/useFormValidation";
-import { usePokemonTeam } from "../../hooks/usePokemonTeam";
-import { Card, Heading, Button } from "../ui";
+import React, { useState } from 'react';
+
+import { useFormValidation, FormData } from '../../hooks/useFormValidation';
+import { usePokemon } from '../../hooks/usePokemon';
+import { usePokemonTeam } from '../../hooks/usePokemonTeam';
+import { SelectOptionType } from '../../types';
+import ValidationInput from '../Input/ValidationInput';
+import PokemonModal from '../Modal/PokemonModal';
+import Select from '../Select/Select';
+import { Card, Heading, Button } from '../ui';
 
 const REQUIRED_TEAM_SIZE = 4;
 
 const PokemonForm: React.FC = () => {
-  const [selectedPokemon, setSelectedPokemon] = useState<SelectOptionType[]>(
-    []
-  );
+  const [selectedPokemon, setSelectedPokemon] = useState<SelectOptionType[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
+    firstName: '',
+    lastName: '',
   });
 
   const { isLoading, error: apiError, pokemonOptions } = usePokemon();
@@ -38,8 +37,7 @@ const PokemonForm: React.FC = () => {
     }
   };
 
-  const isFormComplete =
-    isValid && selectedPokemon.length === REQUIRED_TEAM_SIZE;
+  const isFormComplete = isValid && selectedPokemon.length === REQUIRED_TEAM_SIZE;
   const teamSizeError =
     selectedPokemon.length > 0 && selectedPokemon.length < REQUIRED_TEAM_SIZE
       ? `You must select exactly ${REQUIRED_TEAM_SIZE} Pokemon`
@@ -49,13 +47,7 @@ const PokemonForm: React.FC = () => {
 
   return (
     <Card className="w-full max-w-md mx-auto p-6" elevation="md">
-      <Heading
-        level="h1"
-        align="center"
-        className="mb-6"
-        variant="primary"
-        weight="bold"
-      >
+      <Heading level="h1" align="center" className="mb-6" variant="primary" weight="bold">
         Pokemon Team Builder
       </Heading>
 
@@ -97,7 +89,7 @@ const PokemonForm: React.FC = () => {
             type="submit"
             disabled={!isFormComplete}
             fullWidth
-            variant={isFormComplete ? "primary" : "outline"}
+            variant={isFormComplete ? 'primary' : 'outline'}
           >
             View Your Team
           </Button>

@@ -1,5 +1,6 @@
-import React, { memo } from "react";
-import { Button } from "../ui";
+import React, { memo } from 'react';
+
+import { Button } from '../ui';
 
 interface ModalFooterProps {
   onClose: () => void;

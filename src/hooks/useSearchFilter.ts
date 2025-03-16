@@ -1,9 +1,10 @@
-import { useState, useCallback, useMemo } from "react";
-import { SelectOptionType } from "../types";
-import { filterOptions } from "../utils/selectUtils";
+import { useState, useCallback, useMemo } from 'react';
+
+import { SelectOptionType } from '../types';
+import { filterOptions } from '../utils/selectUtils';
 
 export function useSearchFilter(options: SelectOptionType[]) {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -14,7 +15,7 @@ export function useSearchFilter(options: SelectOptionType[]) {
   }, [searchValue, options]);
 
   const resetSearch = useCallback(() => {
-    setSearchValue("");
+    setSearchValue('');
   }, []);
 
   return {

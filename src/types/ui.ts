@@ -1,14 +1,8 @@
-export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "text"
-  | "outline"
-  | "danger";
-export type ButtonSize = "xs" | "sm" | "base" | "lg" | "xl";
-export type ButtonIconPosition = "left" | "right";
+export type ButtonVariant = 'primary' | 'secondary' | 'text' | 'outline' | 'danger';
+export type ButtonSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl';
+export type ButtonIconPosition = 'left' | 'right';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   fullWidth?: boolean;
@@ -18,10 +12,10 @@ export interface ButtonProps
   className?: string;
 }
 
-export type TextColor = "default" | "muted" | "error" | "success" | "primary";
-export type TextWeight = "normal" | "medium" | "semibold" | "bold";
-export type TextVariant = "tiny" | "small" | "body" | "lead" | "large";
-export type TextAlign = "left" | "center" | "right";
+export type TextColor = 'default' | 'muted' | 'error' | 'success' | 'primary';
+export type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold';
+export type TextVariant = 'tiny' | 'small' | 'body' | 'lead' | 'large';
+export type TextAlign = 'left' | 'center' | 'right';
 
 export interface TextProps {
   children: React.ReactNode;
@@ -32,21 +26,9 @@ export interface TextProps {
   as?: React.ElementType;
 }
 
-export type HeadingLevel =
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
-  | "h6";
-export type HeadingVariant = "primary" | "secondary";
-export type HeadingWeight = "medium" | "semibold" | "bold";
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6 | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+export type HeadingVariant = 'primary' | 'secondary';
+export type HeadingWeight = 'medium' | 'semibold' | 'bold';
 export type HeadingAlign = TextAlign;
 
 export interface HeadingProps {
@@ -59,16 +41,16 @@ export interface HeadingProps {
 }
 
 export type BadgeVariant =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "danger"
-  | "warning"
-  | "info"
-  | "dark"
-  | "light";
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'dark'
+  | 'light';
 
-export type BadgeSize = "sm" | "md";
+export type BadgeSize = 'sm' | 'md';
 
 export interface BadgeProps {
   children: React.ReactNode;
@@ -80,7 +62,7 @@ export interface BadgeProps {
   onRemove?: () => void;
 }
 
-export type CardElevation = "none" | "sm" | "md" | "lg" | "xl";
+export type CardElevation = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface CardProps {
   children: React.ReactNode;

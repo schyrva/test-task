@@ -1,0 +1,220 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
+import { Heading, Text } from "../components/ui";
+
+<Meta title="Design System/Theme" />
+
+# Luna Edge Design System
+
+<div className="flex items-center my-8">
+  <img
+    src="/src/assets/logos/LunaEdgeLogo.svg"
+    alt="Luna Edge Logo"
+    className="h-10 mr-3 brightness-0"
+  />
+  <Heading level="h1" variant="primary" weight="bold">
+    Design System
+  </Heading>
+</div>
+
+The Luna Edge design system provides a comprehensive set of components, patterns, and guidelines to create consistent user experiences across applications.
+
+## Color Palette
+
+Our color palette is built on Tailwind CSS, providing a wide range of colors that work harmoniously together.
+
+### Primary Colors
+
+<ColorPalette>
+  <ColorItem
+    title="Primary"
+    subtitle="Indigo colors"
+    colors={{
+      50: "#eef2ff",
+      100: "#e0e7ff",
+      200: "#c7d2fe",
+      300: "#a5b4fc",
+      400: "#818cf8",
+      500: "#6366f1",
+      600: "#4f46e5",
+      700: "#4338ca",
+      800: "#3730a3",
+      900: "#312e81",
+      950: "#1e1b4b",
+    }}
+  />
+  <ColorItem
+    title="Gray"
+    subtitle="Neutral colors"
+    colors={{
+      50: "#f8fafc",
+      100: "#f1f5f9",
+      200: "#e2e8f0",
+      300: "#cbd5e1",
+      400: "#94a3b8",
+      500: "#64748b",
+      600: "#475569",
+      700: "#334155",
+      800: "#1e293b",
+      900: "#0f172a",
+      950: "#020617",
+    }}
+  />
+</ColorPalette>
+
+### Semantic Colors
+
+<ColorPalette>
+  <ColorItem
+    title="Success"
+    subtitle="Green"
+    colors={{
+      light: "#bbf7d0",
+      base: "#22c55e",
+      dark: "#15803d",
+    }}
+  />
+  <ColorItem
+    title="Warning"
+    subtitle="Yellow/Orange"
+    colors={{
+      light: "#fef08a",
+      base: "#eab308",
+      dark: "#854d0e",
+    }}
+  />
+  <ColorItem
+    title="Error"
+    subtitle="Red"
+    colors={{
+      light: "#fecaca",
+      base: "#ef4444",
+      dark: "#b91c1c",
+    }}
+  />
+  <ColorItem
+    title="Info"
+    subtitle="Blue"
+    colors={{
+      light: "#bae6fd",
+      base: "#0ea5e9",
+      dark: "#0369a1",
+    }}
+  />
+</ColorPalette>
+
+## Typography
+
+Our type system is based on a clean, readable hierarchy that scales well across devices.
+
+<div className="space-y-6 mt-8">
+  <div>
+    <Heading level="h1" variant="primary" weight="bold">
+      Heading 1 (2.25rem)
+    </Heading>
+    <Text variant="tiny" color="muted" className="mt-1">
+      Font weight: 700, Line height: 1.2
+    </Text>
+  </div>
+
+{" "}
+
+<div>
+  <Heading level="h2" variant="primary" weight="semibold">
+    Heading 2 (1.875rem)
+  </Heading>
+  <Text variant="tiny" color="muted" className="mt-1">
+    Font weight: 600, Line height: 1.2
+  </Text>
+</div>
+
+{" "}
+
+<div>
+  <Heading level="h3" variant="primary" weight="medium">
+    Heading 3 (1.5rem)
+  </Heading>
+  <Text variant="tiny" color="muted" className="mt-1">
+    Font weight: 500, Line height: 1.2
+  </Text>
+</div>
+
+{" "}
+
+<div>
+  <Heading level="h4" variant="primary">
+    Heading 4 (1.25rem)
+  </Heading>
+  <Text variant="tiny" color="muted" className="mt-1">
+    Font weight: 500, Line height: 1.2
+  </Text>
+</div>
+
+{" "}
+
+<div>
+  <Text variant="lead" weight="medium">
+    Lead paragraph (1.125rem)
+  </Text>
+  <Text variant="tiny" color="muted" className="mt-1">
+    Font weight: 500, Line height: 1.5
+  </Text>
+</div>
+
+{" "}
+
+<div>
+  <Text variant="body">
+    Body text (1rem) - The quick brown fox jumps over the lazy dog.
+  </Text>
+  <Text variant="tiny" color="muted" className="mt-1">
+    Font weight: 400, Line height: 1.5
+  </Text>
+</div>
+
+{" "}
+
+<div>
+  <Text variant="small">
+    Small text (0.875rem) - The quick brown fox jumps over the lazy dog.
+  </Text>
+  <Text variant="tiny" color="muted" className="mt-1">
+    Font weight: 400, Line height: 1.5
+  </Text>
+</div>
+
+  <div>
+    <Text variant="tiny">
+      Tiny text (0.75rem) - The quick brown fox jumps over the lazy dog.
+    </Text>
+    <Text variant="tiny" color="muted" className="mt-1">
+      Font weight: 400, Line height: 1.5
+    </Text>
+  </div>
+</div>
+
+## Spacing
+
+Our spacing system is built on a 4px base unit (0.25rem in Tailwind), creating a consistent rhythm throughout the interface.
+
+## Elevation
+
+We use a combination of shadows and z-index values to create depth:
+
+- **None**: No shadow
+- **SM**: Small shadow for subtle elevation
+- **MD**: Medium shadow for cards and interactive elements
+- **LG**: Large shadow for modals and popups
+- **XL**: Extra large shadow for elements that need significant elevation
+
+## Border Radius
+
+We use a consistent set of border radius values to soften edges:
+
+- **None**: 0
+- **SM**: 0.125rem (2px)
+- **Default**: 0.25rem (4px)
+- **MD**: 0.375rem (6px)
+- **LG**: 0.5rem (8px)
+- **XL**: 0.75rem (12px)
+- **2XL**: 1rem (16px)
+- **Full**: 9999px (for pills and circular elements)

@@ -1,4 +1,4 @@
-import { SelectOptionType } from "../types";
+import { SelectOptionType } from '../types';
 
 export function filterOptions(
   options: SelectOptionType[],
@@ -7,9 +7,7 @@ export function filterOptions(
   const searchLower = searchValue.toLowerCase().trim();
   if (!searchLower) return options;
 
-  return options.filter((option) =>
-    option.label.toLowerCase().includes(searchLower)
-  );
+  return options.filter((option) => option.label.toLowerCase().includes(searchLower));
 }
 
 export function isOptionSelected(
@@ -38,10 +36,10 @@ export function toggleSelection(
 
 export function getContainerClasses(isOpen: boolean, error?: string): string {
   return [
-    "relative border rounded-lg shadow-sm cursor-pointer min-h-[40px]",
-    error ? "border-red-500" : "border-gray-300",
-    isOpen ? "border-indigo-500 ring-2 ring-indigo-200" : "",
+    'relative border rounded-lg shadow-sm cursor-pointer min-h-[40px]',
+    error ? 'border-red-500' : 'border-gray-300',
+    isOpen ? 'border-indigo-500 ring-2 ring-indigo-200' : '',
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 }

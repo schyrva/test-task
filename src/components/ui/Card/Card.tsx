@@ -1,14 +1,15 @@
-import React from "react";
-import classNames from "classnames";
-import { CardProps } from "../../../types";
-import { CARD_STYLES } from "../../../constants";
+import classNames from 'classnames';
+import React from 'react';
+
+import { CARD_STYLES } from '../../../constants';
+import { CardProps } from '../../../types';
 
 const Card: React.FC<CardProps> = ({
   children,
-  className = "",
+  className = '',
   noPadding = false,
   bordered = false,
-  elevation = "md",
+  elevation = 'md',
 }) => {
   const cardClasses = classNames(
     CARD_STYLES.BASE,

@@ -9,6 +9,8 @@ A React application that allows users to create a team of Pokemon by filling out
 - Pokemon selection with sprites
 - Modal to display the selected Pokemon team
 - Full Storybook documentation
+- Responsive UI that works on mobile, tablet, and desktop
+- Accessibility features for better usability
 
 ## Tech Stack
 
@@ -18,6 +20,8 @@ A React application that allows users to create a team of Pokemon by filling out
 - Axios for API requests
 - HeroIcons for icons
 - Storybook for component documentation
+- ESLint + Prettier for code quality
+- Vite for fast development and building
 
 ## Getting Started
 
@@ -52,6 +56,24 @@ yarn storybook
 
 This will start Storybook at `http://localhost:6006/`
 
+### Code Quality Tools
+
+The project includes ESLint and Prettier for maintaining code quality:
+
+```bash
+# Run linting
+yarn lint:src
+
+# Fix linting issues
+yarn lint:src:fix
+
+# Format code with Prettier
+yarn format
+
+# Run both formatting and linting
+yarn code:fix
+```
+
 ## Project Structure
 
 ```
@@ -61,8 +83,11 @@ src/
 │   ├── Form/          # Form-related components
 │   ├── Input/         # Input components
 │   ├── Modal/         # Modal components
-│   └── Select/        # Select component with stories
+│   ├── Select/        # Select component with stories
+│   └── ui/            # Base UI components
+├── constants/         # Application constants
 ├── hooks/             # Custom React hooks
+├── stories/           # Storybook stories
 ├── types/             # TypeScript type definitions
 └── utils/             # Utility functions
 ```
@@ -85,6 +110,38 @@ src/
   - After completing the form and selecting 4 Pokemon, users can view their team
   - A modal displays the user's name and their selected Pokemon
 
+## Component Architecture
+
+The application follows a component-based architecture with a focus on reusability:
+
+- **UI Components**: Basic building blocks like Button, Badge, Card, and Typography
+- **Form Components**: Validation inputs with error handling
+- **Select Components**: Custom multi-select with search functionality
+- **Modal Components**: Accessible modal windows with proper focus handling
+
 ## API
 
 The application uses the [PokeAPI](https://pokeapi.co/) to fetch Pokemon data.
+
+## Design System
+
+The project implements a consistent design system with:
+
+- Typography scales
+- Color system
+- Spacing system
+- Component variants
+- Consistent elevation (shadow) system
+
+## Future Improvements
+
+- Add unit and integration tests
+- Implement state management for larger application needs
+- Add internationalization support
+- Enhance accessibility features
+
+## Contact
+
+**Author**: Stanislav Chyrva  
+**Email**: stanislav.chyrva@gmail.com  
+**LinkedIn**: [https://www.linkedin.com/in/stanislav-chyrva-3a3b24347/](https://www.linkedin.com/in/stanislav-chyrva-3a3b24347/)
