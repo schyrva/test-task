@@ -9,22 +9,17 @@ export const StoryDecorator: Decorator = (Story, context) => {
 
   return (
     <div
-      className={`p-6 ${isDarkMode ? "bg-slate-800 text-white" : "bg-gray-50"}`}
-      style={{
-        minHeight: "200px",
-        borderRadius: "8px",
-        transition: "all 0.2s ease",
-      }}
+      className={`p-6 min-h-[200px] rounded-lg transition-all duration-200 ease-in-out ${
+        isDarkMode ? "bg-slate-800 text-white" : "bg-gray-50"
+      }`}
     >
       <div className="mb-8">
         <img
           src="/src/assets/logos/LunaEdgeLogo.svg"
           alt="Luna Edge Logo"
-          className="h-8"
-          style={{
-            filter: isDarkMode ? "invert(1)" : "brightness(0)",
-            transition: "filter 0.2s ease",
-          }}
+          className={`h-8 transition-all duration-200 ${
+            isDarkMode ? "invert" : "brightness-0"
+          }`}
         />
       </div>
       <Story />
